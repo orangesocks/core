@@ -1968,8 +1968,8 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       cBinExt := ".exe"
       cOptPrefix := "-/"
       /* NOTE: Some targets (watcom, pocc/xcc) need kernel32 explicitly. */
-      l_aLIBSYSCORE := { "kernel32", "user32", "gdi32", "advapi32", "ws2_32", "iphlpapi" }
-      l_aLIBSYSMISC := { "winspool", "comctl32", "comdlg32", "shell32", "uuid", "ole32", "oleaut32", "mpr", "winmm", "mapi32", "imm32", "msimg32", "wininet" }
+      l_aLIBSYSCORE := { "winmm", "kernel32", "user32", "gdi32", "advapi32", "ws2_32", "iphlpapi" }
+      l_aLIBSYSMISC := { "winspool", "comctl32", "comdlg32", "shell32", "uuid", "ole32", "oleaut32", "mpr", "mapi32", "imm32", "msimg32", "wininet" }
    CASE hbmk[ _HBMK_cPLAT ] == "wce"
 #if ! defined( __PLATFORM__UNIX )
       aCOMPDET := { ;
@@ -4245,6 +4245,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
                AAdd( l_aLIBSYS, "rt" )
             CASE hbmk[ _HBMK_cPLAT ] == "android"
                AAdd( l_aLIBSYS, "dl" )
+               AAdd( l_aLIBSYS, "log" )
             CASE hbmk[ _HBMK_cPLAT ] == "sunos"
                AAdd( l_aLIBSYS, "rt" )
                AAdd( l_aLIBSYS, "socket" )
@@ -9110,7 +9111,7 @@ STATIC PROCEDURE dep_try_detection( hbmk, dep )
 
    IF ! dep[ _HBMKDEP_lDetected ]
       dep_postprocess_one( hbmk, dep )
-      IF ! dep_try_pkg_detection( hbmk, dep )
+      IF dep[ _HBMKDEP_cControl ] == "local" .OR. ! dep_try_pkg_detection( hbmk, dep )
          dep_try_header_detection( hbmk, dep )
       ENDIF
       dep[ _HBMKDEP_lDetected ] := .T.
