@@ -1774,20 +1774,14 @@ static HB_ERRCODE hb_waSetLocate( AREAP pArea, LPDBSCOPEINFO pScopeInfo )
 /*
  * Compile a character expression.
  */
-static HB_ERRCODE hb_waCompile( AREAP pArea, const char * pExpr )
+static HB_ERRCODE hb_waCompile( AREAP pArea, const char * szExpr )
 {
-   PHB_MACRO pMacro;
+   HB_TRACE( HB_TR_DEBUG, ( "hb_waCompile(%p, %p)", ( void * ) pArea, ( const void * ) szExpr ) );
 
-   HB_TRACE( HB_TR_DEBUG, ( "hb_waCompile(%p, %p)", ( void * ) pArea, ( const void * ) pExpr ) );
+   if( ! pArea->valResult )
+      pArea->valResult = hb_itemNew( NULL );
 
-   pMacro = hb_macroCompile( pExpr );
-   if( pMacro )
-   {
-      pArea->valResult = hb_itemPutPtr( pArea->valResult, ( void * ) pMacro );
-      return HB_SUCCESS;
-   }
-   else
-      return HB_FAILURE;
+   return hb_vmCompileMacro( szExpr, pArea->valResult ) ? HB_SUCCESS : HB_FAILURE;
 }
 
 /*
@@ -1967,6 +1961,13 @@ static HB_ERRCODE hb_waUnsupported( AREAP pArea )
    return HB_FAILURE;
 }
 
+static HB_ERRCODE hb_waUnsupported_B( AREAP pArea, HB_BOOL p1 )
+{
+   HB_SYMBOL_UNUSED( p1 );
+
+   return hb_waUnsupported( pArea );
+}
+
 static HB_ERRCODE hb_waUnsupported_V( AREAP pArea, void * p1 )
 {
    HB_SYMBOL_UNUSED( p1 );
@@ -2123,7 +2124,7 @@ static const RDDFUNCS waTable =
 
    /* Data management */
 /* ( DBENTRYP_VF )   */ hb_waAddField,          /* AddField       */
-   ( DBENTRYP_B )       hb_waUnsupported_L,     /* Append         */
+   ( DBENTRYP_B )       hb_waUnsupported_B,     /* Append         */
 /* ( DBENTRYP_I )    */ hb_waCreateFields,      /* CreateFields   */
    ( DBENTRYP_V )       hb_waUnsupported,       /* DeleteRec      */
    ( DBENTRYP_BP )      hb_waUnsupported_V,     /* Deleted        */

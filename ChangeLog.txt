@@ -7,6 +7,2990 @@
    Entries may not always be in chronological/commit order.
    See license at the end of file. */
 
+2026-02-28 15:33 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/evppkey.c
+    ! disabled EVP_PKEY_get_encoded_public_key() in LibreSSL builds
+
+2026-02-27 21:27 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc1.cpp
+    * use Qt::MiddleButton: instead of case Qt::MidButton: in Qt5 builds
+
+  * contrib/hbssl/evppkey.c
+    * implemented EVP_PKEY_get_encoded_public_key() in OpenSSL 1.1 builds
+      using depreciated in 3.0 EVP_PKEY_get1_tls_encodedpoint()
+
+2026-02-26 23:30 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.hbx
+    * excluded HB_GT_QTC[3-7] functions
+
+2026-02-26 23:12 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/evppkey.c
+    ! added missing OpenSSL version check for new function
+      EVP_PKEY_get1_encoded_public_key().
+      OpenSSL 3.0.0 is required otherwise empty string is returned.
+
+  * contrib/gtqtc/gtqtc1.cpp
+    ! use QFontDatabase static members to not create depreciated in Qt6
+      QFontDatabase object instance
+
+2026-02-26 20:50 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/evppkey.c
+  * contrib/hbssl/hbssl.hbx
+    + added new PRG function
+         EVP_PKEY_get_encoded_public_key( <pKey> ) -> <cPubKeyData>
+
+2026-02-16 23:30 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.hbp
+    ! give HB_WITH_QT higher priority then the general setting
+      HB_BUILD_3RDEXT=no
+
+2026-02-12 02:39 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * package/harbour.spec
+    + addedhbbmp library
+
+2026-02-08 04:06 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.h
+  * contrib/gtqtc/gtqtc1.cpp
+    * try to find good monospace font at startup
+    * changed default font weight from bold to normal
+
+  * tests/gtkeys.prg
+    + added commented reference to HB_GTI_FONTA_NOSTRETCH and
+      HB_GTI_FONTNAME
+
+2026-02-07 20:58 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc1.cpp
+    * set HighDpiScaleFactorRoundingPolicy to Round for new QT versions
+      except Android builds.
+      It fixes problem with proportional fonts in QT6 though in some
+      environments it may not give the optimal results.
+      This setting can be overwritten at runtime by
+      QT_SCALE_FACTOR_ROUNDING_POLICY environment variable.
+
+2026-02-06 13:53 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc1.cpp
+  * contrib/gtqtc/gtqtc1.cpp
+    * use default GT startup code (#include "hbgtreg.h")
+    ! removed ChildRemoved event from list of events ending resize process,
+      it should fix resizing problem with current WMs.
+    + added small hack to easy detect QT version used to compile GTQTC
+    + added compile time switch HB_QTC_NO_HIGHDPI_SCALING
+      It's dirty hack to "fix" problem with font scaling in QT6 but it's
+      nit real solution. The same effect can be achieved by setting an
+      environment variable QT_ENABLE_HIGHDPI_SCALING=0 before application
+      using GTQTC is started so it's rather a marker to signal the problem.
+
+  * contrib/hbzebra/tests/pclqr.prg
+    * removed trailing spaces
+
+2026-02-04 00:37 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbzebra/tests/pclqr.prg
+    + added small example on how a zebra produced QR-code
+      can fit to a direct PCL5 printing pipeline
+
+2026-01-17 12:21 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * ChangeLog.txt
+  * src/rtl/dateshb.c
+    ; fixed description of hb_UTCToTS() function, the second parameter should
+      be @<nUTCOffset> not @<lUTCOffset>, the correct syntax is:
+         hb_UTCToTS( <tUTCTime> [, @<nUTCOffset> ] ) -> <tLocalTime>
+      Thanks to Eric.
+
+2026-01-13 16:24 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+  * contrib/hbcurl/hbcurl.ch
+    ! CURLOPT_KRBLEVEL has been deprecated since 8.17.0
+
+2026-01-13 14:37 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/harbour.hbx
+  * src/harbour.def
+  * src/rtl/version.c
+    + added new PRG function hb_osIsWine()
+
+  * src/rtl/gtxwc/gtxwc.c
+    + added small hack to retrive some key codes hidden by X*LookupString()
+
+2026-01-09 17:42 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/ssl_hb.c
+    ! fixed buffer overflow
+    ! fixed GPF on wrong parameters
+
+2025-12-23 00:42 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/d2i.c
+  * contrib/hbssl/hbssl.hbx
+    * added new PRG function which converts ASN.1 DER SEQUENCE (RFC 3279) to
+      IEEE P1363 Fixed Field Concatenation ( R || S ):
+         D2I_ECDSA_SIG_RS( <cSigDER> ) -> <cSigRS>
+
+  * src/rtl/vfile.c
+    * comment formatting
+
+2025-12-21 12:06 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/x509.c
+    ! fixed compilation with OpenSSL < 1.1
+
+2025-12-21 10:45 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/hbssl.hbx
+  * contrib/hbssl/evppkey.c
+    + added new PRG functions:
+         EVP_PKEY_CTX_get_RSA_PSS_saltlen( <pKeyCTX>, @<nSaltLen> )
+               -> <nRetCode>
+         EVP_PKEY_CTX_set_RSA_PSS_saltlen( <pKeyCTX>, <nSaltLen> )
+               -> <nRetCode>
+         EVP_PKEY_CTX_get_signature_md( <pKeyCTX>, @<nEvpHash> )
+               -> <nRetCode>
+         EVP_PKEY_CTX_set_signature_md( <pKeyCTX>, <nEvpHash> | <cEvpHash> )
+               -> <nRetCode>
+         EVP_PKEY_sign_init( <pKeyCTX> ) -> <nRetCode>
+         EVP_PKEY_sign( <pKeyCTX>, @<cSignature>, <cData> ) -> <nRetCode>
+         EVP_PKEY_verify_init( <pKeyCTX> ) -> <nRetCode>
+         EVP_PKEY_verify( <pKeyCTX>, <cSignature>, <cData> ) -> <nRetCode>
+
+  * contrib/hbssl/hbssl.hbx
+  * contrib/hbssl/x509.c
+    + added new PRG function:
+         X509_get_serialNumber( <pX509> ) -> <nSerialNum>
+
+  * src/rtl/base64d.c
+    * indenting
+    ; question: With small modification we can add support for base64url
+                encoding (with additional parameter passed to hb_base64encode())
+                and decoding (can be done automatically by hb_base64decode()).
+                Do you think it's worth to do or it's such simple thing that
+                we should keep the code clean and user can make necessary
+                conversions themselves.
+
+2025-12-15 11:10 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * src/vm/runner.c
+    ! fix indentation
+
+    ! previous change was not backwards compatible with hb_hrbLoad()
+      stealing character argument, that would be otherwise passed
+      to INIT PROCEDURE's in .hrb file
+
+  * src/include/hb_hrb.ch
+    + add HB_HRB_ARG_PRGNAME definition
+      use to pass "virtual" script.prg filename as third parameter
+      hb_hrbLoad( HB_HRB_ARG_PRGNAME + <nOptions>, cPCode, cFileName )
+
+2025-12-14 00:00 UTC-0300 Lailton Fernando Mariano (lailton/at/paysoft.com.br)
+  * src/vm/runner.c
+    * HB_HRBLOAD: support optional filename for in-memory HRB load
+      hb_hrbLoad( cPCode, cFileName )
+
+2025-12-14 03:10 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbzebra/datamtrx.c
+    * extended GCC excessive diagnostics workaround also for GCC-15 to fix
+      strict mode in CI
+
+2025-12-13 19:38 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbdate.h
+  * src/common/hbdate.c
+    * changed the following C functions:
+         HB_BOOL hb_timeStrGetUTC( const char * szTime,
+                                   int * piHour, int * piMinutes,
+                                   int * piSeconds,
+                                   int * piMSec, int * piUTCOffset );
+         HB_BOOL hb_timeStampStrGetUTC( const char * szDateTime,
+                                        int * piYear, int * piMonth,
+                                        int * piDay, int * piHour,
+                                        int * piMinutes, int * piSeconds,
+                                        int * piMSec, int * piUTCOffset );
+      to
+         HB_BOOL hb_timeStrGetUTC( const char * szTime,
+                                   int * piHour, int * piMinutes,
+                                   int * piSeconds,
+                                   int * piMSec, int * piUTCOffset,
+                                   HB_BOOL * pfUTC );
+         HB_BOOL hb_timeStampStrGetUTC( const char * szDateTime,
+                                        int * piYear, int * piMonth,
+                                        int * piDay, int * piHour,
+                                        int * piMinutes, int * piSeconds,
+                                        int * piMSec, int * piUTCOffset,
+                                        HB_BOOL * pfUTC );
+      Warning: incompatibility !!! New parameter HB_BOOL * pfUTC has been
+               added. These functions are used by Harbour internally but
+               if someone uses them in his code then he should add NULL
+               to passed parameters.
+    + added new C function:
+         HB_BOOL hb_timeStampStrGetDTU( const char * szDateTime,
+                                        long * plJulian, long * plMilliSec,
+                                        HB_BOOL * pfUTC );
+    ; the parameter pfUTC is used to retrieve information if time string
+      represents UTC time.
+
+  * src/rtl/dateshb.c
+    * added 2-nd parameter to hb_StrToTS() function which can be passed by
+      reference to retrieve information if time string represents UTC time.
+      Current syntax is:
+         hb_StrToTS( <cTimeStr> [, @<lUTC> ] ) -> <tTime>
+
+2025-12-12 04:09 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/harbour.hbx
+  * src/harbour.def
+  * src/rtl/dateshb.c
+    + added new PRG function which converts UTC time to local time:
+          hb_UTCToTS( <tUTCTime> [, @<nUTCOffset> ] ) -> <tLocalTime>
+
+  * include/hbdate.h
+  * src/harbour.def
+  * src/common/hbdate.c
+    + added new C function which converts UTC time to local time:
+         double hb_timeUTCToLocal( double dTimeStamp, int * piUTCOffset );
+
+2025-12-11 00:15 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * src/vm/macro.c
+    * workaround MinGW/GCC 15+ excessive diagnostics in hb_macroTextSymbol()
+      to fix strict mode in CI, manifested with either of those messages:
+      error: 'memcpy' specified bound 4294967295 exceeds maximum object size
+             2147483647 [-Werror=stringop-overflow=]
+      error: 'memcpy' accessing 4294967295 bytes at offsets 4 and 0 overlaps
+             6442450943 bytes at offset -2147483648 [-Werror=restrict]
+
+  * utils/hbmk2/hbmk2.prg
+    * applied bcc64 fixes from hbmk2.prg posted by Carlos Vargas on
+      harbour-devel (reformatted):
+      https://groups.google.com/g/harbour-devel/c/vic0m-VVZ8k
+
+    ; bcc64 support is not tested and purely based on contributions
+
+2025-12-10 22:37 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * README.md
+  * package/harbour.spec
+    + added --with localpng RPM build switch
+
+2025-12-10 22:22 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rtl/cdpapi.c
+    ! added missing variable initialization
+
+2025-12-10 17:00 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/d2i.c
+    * use HB_SSL_CONST instead of explicit const for some ancient (<0.9.8)
+      OpenSSL versions
+
+2025-12-10 16:29 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/evpmd.c
+  * contrib/hbssl/hbssl.h
+    * moved hb_EVP_MD_ptr_to_id() function from static to public area
+
+  * contrib/hbssl/hbssl.hbx
+  * contrib/hbssl/hbssl.hbm
+  + contrib/hbssl/d2i.c
+    * added new functions to extract asynchronous keys and certificates
+      from DER data:
+         D2I_PUBKEY( <cDER> ) -> <pEVPKey>
+         D2I_RSAPUBLICKEY( <cDER> ) -> <pRSAKey>
+         D2I_X509( <cDER> ) -> <pX509Cert>
+
+  * contrib/hbssl/hbssl.hbx
+  * contrib/hbssl/evppkey.c
+    + added new functions to get/set RSA asymmetric keys parameters
+      encapsulated in EVP_PKEY structures:
+         EVP_PKEY_CTX_get_RSA_padding()
+         EVP_PKEY_CTX_set_RSA_padding()
+         EVP_PKEY_CTX_get_RSA_OAEP_md()
+         EVP_PKEY_CTX_set_RSA_OAEP_md()
+         EVP_PKEY_CTX_get_RSA_MGF1_md()
+         EVP_PKEY_CTX_set_RSA_MGF1_md()
+
+  * src/common/hbdate.c
+    * accept up to 9 fractional digits (nanoseconds) in timestamp strings
+      though only first three ones (milliseconds) are significant.
+      Recently some tools begin to generate such timestamp values and
+      Harbour had problems with decoding them correctly.
+
+  * src/compiler/hbmain.c
+    + allow to pass file name for source code compiled by hb_compileFromBuf()
+      It works like in all other versions of hb_compile*() functions - it's
+      enough to pass it as argument without option prefix (option prefix
+      is "-" on all platforms and also "/" on DOS, OS2, MS-Win).
+      Please remember that first parameter after control ones is used as
+      compiler name in generated output messages regardless of its option
+      prefix.
+
+2025-12-05 22:52 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rtl/gttrm/gttrm.c
+    ! fixed memory leak
+
+2025-12-04 16:39 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rtl/cdpapi.c
+    ! fixed hb_cdpUTF8StringPeek() to work with 0 based indexes and
+      Unicode characters > 0xFFFF
+
+  * src/rtl/hbmd5.c
+    ! removed redundant code (copy and past typo)
+
+2025-11-22 12:40 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * include/hbdefs.h
+    ! fix undefined behaviour on signed int overflow in
+      HB_GET_LE_INT24(), HB_GET_BE_INT24() macros
+      reported by runtime sanitizer (LLVM -fsanitize-trap=undefined)
+      panic: left shift of 255 by 24 places cannot be represented
+      in type 'HB_I32' (aka 'int')
+
+2025-11-17 14:14 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  ; sync macros in-line with Viktor's fork:
+    2015-06-16 01:41 UTC+0200 Viktor Szakats (vszakats users.noreply.github.com)
+  * include/hbdefs.h
+    + add HB_PUT_UINT64(), HB_GET_UINT64() macros
+
+2025-11-17 09:58 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  + include/hbcrypto.h
+    ! actually add the file, missed from the push...
+
+2025-11-16 22:10 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * config/win/zig.mk
+    ! in some Zig tests, building for Windows from UNIX shell (MSYS2
+      or cross compiling) resource compiler "zig rc" preferred options
+      passed with "-" instead of "/"
+
+2025-11-16 22:00 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  ; import hbcrypto.h header that allows reusing core sha functions
+    by contribs, coming from Viktor's fork:
+    2015-07-13 19:39 UTC+0200 Viktor Szakats (vszakats users.noreply.github.com)
+    2015-07-13 23:12 UTC+0200 Viktor Szakats (vszakats users.noreply.github.com)
+  + include/hbcrypto.h
+    + move sha2 and hmac/sha2 related headers to Harbour
+      header directory so they can be used by other components.
+    + export sha2 and hmac/sha2 low-level functions from Harbour dynlib
+  * src/rtl/sha1.c
+  * src/rtl/sha1.h
+  * src/rtl/sha1hmac.c
+  * src/rtl/sha1hmac.h
+  * src/rtl/sha2.c
+  * src/rtl/sha2hmac.c
+  * src/rtl/hbsha1.c
+  * src/rtl/hbsha1hm.c
+  * src/rtl/hbsha2.c
+  * src/rtl/hbsha2hm.c
+    + use Harbour index type in low-level SHA code
+    % drop high-level hack compensating for fixed sized
+      low-level indexes in 64-bit builds
+
+2025-10-23 21:45 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * src/vm/extrap.c
+    + added Windows ARM64 CPU register dump
+
+2025-10-23 19:53 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * utils/hbmk2/hbmk2.prg
+    * make the MSVC version detection based on paths a little less
+      trustful. With rolling releases of these MS tools, it's more
+      likely that "random" numbers will appear in dir names.
+
+2025-10-21 13:20 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbssl/hbssl.hbc
+    ! actually target VS 2017 for libcrypto, libssl
+
+  * utils/hbmk2/hbmk2.prg
+    ! slight rework of MSVC version detection, so it actually operates
+      with empty cPath_CompC variable
+
+    * also try to discover version number of future MSVC releases
+
+    * with Zig building GUI applications on Windows, hbmk2 will
+      now pass -Wl,/subsystem:windows to the linker
+
+2025-10-20 17:42 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbssl/hbssl.hbc
+    ! actually lib* prefix should stay on win/msvc platform
+      OpenSSL builds. Thanks to Mario H. Sabado for testing
+      and feedback.
+
+2025-10-20 10:47 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * .github/workflows/windows-ci.yml
+    * encourage to test OpenSSL
+
+  * contrib/hbssl/hbssl.hbc
+    * treat Microsoft Visual Studio 2017 or newer can use
+      the latest OpenSSL lib. That's very loose approximation,
+      but hopefully better than before. If you are using such
+      compiler please update your OpenSSL library.
+
+    % deduplicated the rules, leftovers from old static "_s" suffixing
+
+2025-10-19 22:48 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * .github/workflows/windows-ci.yml
+    + add openssl-devel to MSYS2 CI
+
+2025-10-19 22:12 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbssl/hbssl.h
+  * contrib/hbssl/hbssl.hbm
+  * contrib/hbssl/ssl.c
+    ! HB_OPENSSL_HAS_APPLINK was never checked,
+      defining HB_OPENSSL_NO_APPLINK didn't do anything
+
+    * make current OpenSSL 3.6.0 build under fresh MSYS2
+      shell. MSYS2 does not distribute applink.c, claiming
+      MingGW C runtime is safe for operation without it.
+      Have to define HB_OPENSSL_NO_APPLINK and additional
+      workaround for lacking __int64 type when including
+      ssl.h. If you need similar workround outside of
+      MSYS2 shell, setenv: HB_USER_CFLAGS=-DHB_OPENSSL_MSYS
+
+      packages needed: openssl-devel (for headers)
+                       mingw-w64-x86_64-openssl (for libs)
+                       mingw-w64-aarch64-openssl
+
+  * contrib/hbssl/hbssl.hbc
+    * using Clang or Zig compiler on Windows, build will
+      now reference libssl and libcrypto instead of old
+      ssleay32/libeay32 pair when linking.
+
+  * config/win/zig.mk
+    % unnecessary check
+
+2025-10-18 23:15 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  + config/bsd/zig-noauto.mk
+  + config/bsd/zig.mk
+  + config/common/zig-noauto.mk
+  + config/common/zig.mk
+  + config/darwin/zig-noauto.mk
+  + config/darwin/zig.mk
+  + config/linux/zig-noauto.mk
+  + config/linux/zig.mk
+  + config/win/zig-noauto.mk
+  + config/win/zig.mk
+  * config/global.mk
+  * utils/hbmk2/hbmk2.prg
+    ! typo fixed in Alpha target (this path was really untested)
+
+    + added support for using Zig as LLVM C compiler frontend. Recent
+      idea comes from Marcos Gambeta Harbour++ fork, though I haven't
+      borrowed any code. Here the functionalty is complete, whole
+      Harbour source tree can be compiled, together with shared libs.
+
+      Zig has unique ability of managing cross-compiled builds, mostly
+      without downloading anything else. For example you should be able
+      to easily make a Linux+musl libc build of your Harbour application
+      that will run on any distribution with Linux kernel >= 2.6.39 (untested).
+
+      Zig is not auto-detected by the Harbour build process, HB_COMPILER=zig
+      has to be defined. The only exception is that, hbmk2 on Windows can
+      locate "zig.exe" while building final Harbour applications. Usually
+      there are no conflicting tools on PATH on this platform.
+
+      After downloading zig from https://ziglang.org/download/
+      specific to your OS, assuming the tool being unpacked to
+      /home/user/zig or C:\zig, usage is as follows:
+
+      Linux/BSD native build:
+      PATH=$PATH:/home/user/zig
+      HB_COMPILER=zig make -j8
+
+      Unix to Windows x64 cross:
+      PATH=$PATH:/home/user/zig
+      export HB_ZIG_TARGET=x86_64-windows
+      # (or) export HB_ZIG_TARGET=x86_64-windows-gnu
+      export HB_CPU=x86_64
+      # have to build a Harbour for your host first, for a native hbmk2
+      export HB_HOST_BIN=/home/user/harbour/bin/linux/zig
+      export HB_PLATFORM=win
+      export HB_BUILD_NAME=64cross
+      export HB_COMPILER=zig
+      make -j16
+
+      Windows native build:
+      PATH=C:\zig;%PATH%
+      set HB_COMPILER=zig
+      win-make -j8
+
+      Windows to Windows-on-ARM cross:
+      set HB_ZIG_TARGET=aarch64-windows
+      set HB_CPU=arm64
+      set HB_HOST_BIN=C:\harbour\bin\win\zig
+      set HB_COMPILER=zig
+      win-make -j8
+
+      Windows to Linux ARM64:
+      set HB_USER_CFLAGS=-fPIC
+      set HB_ZIG_TARGET=aarch64-linux
+      set HB_PLATFORM=linux
+      set HB_CPU=arm64
+      set HB_HOST_BIN=C:\harbour\bin\win\zig
+      set HB_COMPILER=zig
+      win-make -j8
+
+      Instead of setting HB_ZIG_TARGET, the less convenient way is:
+      HB_USER_CFLAGS=-target aarch64-linux
+      HB_USER_LDFLAGS=-target aarch64-linux
+      HB_USER_DFLAGS=-target aarch64-linux
+
+      Some target platforms need PIC mode even for static builds,
+      in such case add:
+      HB_USER_CFLAGS=-fPIC
+
+    ; TOFIX: shared lib symlinks are not created when cross-building from
+             Windows to Linux, could copy or adapt modern Windows counterpart
+
+             olectl.h is missing when cross-building hbwin contrib from
+             Linux to Windows (likely needs headers from Windows SDK)
+
+             basically a non issue, but HB_CPU and HB_PLATFORM are not guessed
+             from HB_ZIG_TARGET - conversion table seems to be doable, if
+             someone is interested in making a patch.
+
+2025-10-16 22:04 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * utils/hbmk2/hbmk2.prg
+    * remaining LEFTEQUAL() changed to hb_LeftEq() calls
+    - removed LEFTEQUAL() macro
+
+2025-10-16 21:40 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * config/global.mk
+    * follow up to previous, define __ARCH64BIT__ for .prg files
+      if applicable during first stage done by GNU Make
+
+    * consider Alpha a 64-bit CPU too when it's a cross-build target
+      (untested)
+
+  * utils/hbmk2/hbmk2.prg
+    * updated stored list of Visual Studio (2013-2022) versions to C comp
+      revisions, which could be used in .hbp files HB_COMP_VER macro
+
+    ; https://learn.microsoft.com/en-us/cpp/overview/compiler-versions
+      more detailed versioning available if someone is interested in that
+      please submit a patch that would translate C compiler path to
+      version according to the linked rules - MSVC now has rolling
+      releases
+
+2025-10-16 21:09 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * utils/hbmk2/hbmk2.prg
+    * updated approach to define __ARCH64BIT__ at .prg level when
+      cross-compiling for such architecture.
+      Thanks to Alexey Zapolskiy for noticing.
+
+    + local hb_RightEq() deployed as macro
+
+2025-10-04 09:09 UTC+0100 Antonio Linares (antonio.fivetech/at/gmail.com)
+  * config/bin.mk
+    ! fixed duplicate library warnings on macOS by defining platform-specific
+      HB_LIBS_TPL template without duplicate hbrtl and hbvmmt libraries
+
+  * utils/hbmk2/hbmk2.prg
+    ! fixed timing of macOS-specific library deduplication in aLIB_BASE_RDD
+      and aLIB_BASE_RDD_MT arrays to occur after platform detection, eliminating
+      duplicate library warnings during program compilation
+
+2025-09-16 13:16 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+    ! pacified warning
+
+2025-09-10 09:08 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbbmp/core.c
+    ! pacified BCC warnings
+
+2025-09-09 19:55 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbbmp/core.c
+    ! pacified BCC warnings
+
+  * src/vm/macro.c
+    * minor modification to test if it can pacify false warning in recent GCC
+
+2025-09-09 18:58 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/3rd/png/pngrutil.c
+    ! moved PNG_UNUSED() before return statement to avoid BCC W8070 Warning
+
+  * src/3rd/png/png.diff
+    ! rediffed with
+         hbmk2 ../../../bin/3rdpatch.hb -rediff
+
+2025-09-09 18:13 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/3rd/zlib/Makefile
+  * src/3rd/zlib/README
+  * src/3rd/zlib/deflate.c
+  * src/3rd/zlib/deflate.h
+  * src/3rd/zlib/gzguts.h
+  * src/3rd/zlib/gzlib.c
+  * src/3rd/zlib/inflate.c
+  * src/3rd/zlib/inftrees.c
+  * src/3rd/zlib/inftrees.h
+  * src/3rd/zlib/trees.c
+  * src/3rd/zlib/zconf.h
+  * src/3rd/zlib/zlib.h
+  * src/3rd/zlib/zutil.h
+  * src/3rd/zlib/zlib.diff
+    * updated to version 1.3.1
+
+2025-09-09 17:38 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbmlzo/3rd/minilzo/README
+  * contrib/hbmlzo/3rd/minilzo/lzoconf.h
+  * contrib/hbmlzo/3rd/minilzo/lzodefs.h
+  * contrib/hbmlzo/3rd/minilzo/minilzo.c
+  - contrib/hbmlzo/3rd/minilzo/minilzo.diff
+  * contrib/hbmlzo/3rd/minilzo/minilzo.h
+  * contrib/hbmlzo/3rd/minilzo/minilzo.hbp
+    * updated to version 2.10
+
+2025-09-09 16:36 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/3rd/png/LICENSE
+  * src/3rd/png/Makefile
+  * src/3rd/png/png.c
+  * src/3rd/png/png.diff
+  * src/3rd/png/png.h
+  * src/3rd/png/pngconf.h
+  * src/3rd/png/pngdebug.h
+  * src/3rd/png/pngerror.c
+  * src/3rd/png/pngget.c
+  * src/3rd/png/pnginfo.h
+  * src/3rd/png/pnglconf.h
+  * src/3rd/png/pngmem.c
+  * src/3rd/png/pngpread.c
+  * src/3rd/png/pngpriv.h
+  * src/3rd/png/pngread.c
+  * src/3rd/png/pngrio.c
+  * src/3rd/png/pngrtran.c
+  * src/3rd/png/pngrutil.c
+  * src/3rd/png/pngset.c
+  * src/3rd/png/pngstru.h
+  * src/3rd/png/pngtrans.c
+  * src/3rd/png/pngwio.c
+  * src/3rd/png/pngwrite.c
+  * src/3rd/png/pngwtran.c
+  * src/3rd/png/pngwutil.c
+    * updated to version 1.6.50
+
+  * contrib/hbmlzo/3rd/minilzo/minilzo.c
+  + contrib/hbmlzo/3rd/minilzo/minilzo.diff
+    ! fixed compilation with ISO C++ 17 compilers
+
+2025-09-09 13:50 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbdefs.h
+    + added new types HB_WCHAR16 and HB_WCHAR32, existing type HB_WCHAR
+      is mapped to HB_WCHAR16 (just like before)
+
+  * include/hbapicdp.h
+  * src/harbour.def
+  * src/rtl/cdpapi.c
+    + added new C functions for encoding and decoding UTF-8 string using
+      which HB_WCHAR32:
+         int hb_cdpU32CharToUTF8( char * szUTF8, HB_WCHAR32 wc );
+         HB_BOOL hb_cdpUTF8GetU32( const char * pSrc, HB_SIZE nLen,
+                                   HB_SIZE * pnIndex, HB_WCHAR32 * pWC );
+         HB_BOOL hb_cdpUTF8GetUCS( const char * pSrc, HB_SIZE nLen,
+                                   HB_SIZE * pnIndex, HB_WCHAR32 * pWC );
+         HB_BOOL hb_cdpUTF8GetU16( const char * pSrc, HB_SIZE nLen,
+                                   HB_SIZE * pnIndex, HB_WCHAR16 * pWC );
+         HB_BOOL hb_cdpUTF8Validate( const char * pSrc, HB_SIZE nLen );
+      They support full UCS and are much more restrictive against errors and
+      wrong UTF-8 encoding, i.e. now overlong encoding is forbidden.
+      The wrong characters are translated to 0xFFFD and later if such
+      character does not exist in final CP to '?' ASCII character.
+    * declaration of the following UTF-8 C functions have been changed to
+      operate on HB_WCHAR32 instead of HB_WCHAR:
+         int hb_cdpUTF8CharSize( HB_WCHAR32 wc );
+         HB_WCHAR32 hb_cdpUTF8StringPeek( const char * pSrc, HB_SIZE nLen,
+                                          HB_SIZE nPos );
+    * the following C functions have been changed to internally operate on
+      HB_WCHAR32 instead of HB_WCHAR:
+         hb_cdpUTF8StringLength()
+         hb_cdpUTF8StringAt()
+         hb_cdpUTF8StringSubstr()
+    * the following C functions have been changed to use new hb_cdpUTF8GetU*()
+      instead of step by step decoding with hb_cdpUTF8ToU16NextChar()
+         hb_cdpStrToUTF8Disp()
+         hb_cdpUTF8AsStrLen()
+         hb_cdpUTF8ToStr()
+         hb_cdpStrToU16()
+         hb_cdpUtf8Char()
+    * use HB_CDP_ERROR_* macros to mark wrong encoding
+
+  * src/rtl/cdpapihb.c
+    * the following UTF-8 C functions have been changed to operate on
+      HB_WCHAR32 instead of HB_WCHAR:
+         hb_utf8Chr()
+         hb_utf8Asc()
+         hb_utf8Poke()
+         hb_utf8Peek()
+      Other UTF-8 PRG functions have been adopted to HB_WCHAR32 by changes
+      in corresponding C functions.
+
+  * src/codepage/cp_utf8.c
+    * use new function hb_cdpUTF8GetU16() to decode UTF-8 strings in UTF8EX CP
+
+  * src/rtl/arc4.c
+    + added new macro HB_NO_SYSCTL which allow to disable sysctl() in Linux
+      builds for GLIBC < 2.30
+
+2025-09-03 12:21 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rtl/cdpapi.c
+    + added fallback translation table for different variants of Latin
+      character, now when translation is made between different encoding
+      and the variant of Latin character does not exist in destination
+      code page then it's translated to their base Latin form, i.e.:
+         hb_utf8ToStr( "ĄĆĘŁŃÓŚŹŻąćęłńóśźż", "EN" ) -> "ACELNOSZZacelnószz"
+
+  * tests/uc16_gen.prg
+    ; updated comment
+
+2025-08-29 12:49 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbbmp/core.c
+  * contrib/hbbmp/hbbmp.ch
+  * contrib/hbbmp/hbbmp.h
+  * contrib/hbbmp/hbbmp.hbx
+    + added new PRG functions:
+         hb_bmp_frombitmap( <cBitMap>, <nAlign>, <nWidth>, <nHeight>, ;
+                            [<nDepth>=1], [<nDPI>=72], [<aPalette>], ;
+                            [@<nError>] ) -> <pBMP> | NIL
+         hb_bmp_colorreset( <pBMP> )
+
+  * contrib/hbct/dattime3.c
+    ! struct timespec initialization
+
+  * contrib/hbplist.txt
+    + added hbbmp library
+
+  * contrib/hbzebra/coredraw.c
+  * contrib/hbzebra/hbzebra.hbx
+    + added new PRG function:
+         hb_zebra_getbitmap( <hZebra>, <nAlign>=8, <lBottomUp>=.F., ;
+                             @<nWidth>, @<nHeight>, <nScaleX>, <nScaleY>, ;
+                             <nBorder> ) -> <cBitMap> | NIL
+
+  * contrib/hbzebra/tests/bmp.prg
+    + added example for much faster BMP creation using hb_zebra_getbitmap() and
+      hb_bmp_frombitmap() functions
+
+  * src/rtl/filebuf.c
+    ! casting
+
+  * src/vm/extrap.c
+    * allocate stack buffer dynamically, in new Linux version IGSTKSZ is
+      defined as sysconf( _SC_SIGSTKSZ ) so it cannot be used as legal size
+      for static arrays
+
+2025-08-23 18:49 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbbmp/core.c
+    ! fixed copy & past typos reported by Grigory Filatov. Thanks a lot.
+
+2025-08-22 21:50 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  + contrib/hbbmp/core.c
+  + contrib/hbbmp/hbbmp.ch
+  + contrib/hbbmp/hbbmp.h
+  + contrib/hbbmp/hbbmp.hbc
+  + contrib/hbbmp/hbbmp.hbp
+  + contrib/hbbmp/hbbmp.hbx
+  + contrib/hbbmp/readme.txt
+  + contrib/hbbmp/tests/hbbmptst.prg
+  + contrib/hbbmp/tests/hbmk.hbm
+    + added new BMP image library for Harbour
+    ; HBBMP is small library for Harbour dedicated to create and modify
+      BMP images. It has not any 3rd party libs dependencies.
+      See readme.txt for more information
+
+  + contrib/hbzebra/tests/bmp.prg
+    + added example code which uses HBBMP as backend for HBZEBRA and
+      creates BMP images with generated barcodes.
+
+2025-08-22 12:00 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbzebra/coredraw.c
+  * contrib/hbzebra/hbzebra.hbx
+    + added new PRG function:
+         hb_zebra_getsize( <hZebra>, @<nWidth>, @<nHeight> ) -> <nError>
+      it calculates size in points of the created barcode and returns 0 on
+      success or error code
+
+  + contrib/hbzebra/tests/gtgfx.prg
+    + borrowed from Viktor's fork, thanks
+      2014-09-18 22:32 UTC+0200 Viktor Szakats (vszakats users.noreply.github.com)
+       + added on-screen barcode example, created by elch
+         (with some minor cleanups)
+         https://groups.google.com/d/msg/harbour-users/_Wht51JZGgE/ZXyvaJNH9ggJ
+         https://github.com/vszakats/hb/commit/feb4fc0e204388fd88ce0456564894469355affa
+
+  * contrib/sddoci/core.c
+    * map ostrlen() to strlen() or wcslen() in OCI_CHARSET_UNICODE builds
+    ; TOFIX: this library uses wchar_t for unicode strings, it means that
+             in *nixes where wchar_t is 32-bit integer mapping to Harbour
+             HB_WCHAR is wrong and has to be fixed
+
+  * include/hbapifs.h
+  * src/harbour.def
+  * src/rtl/filebuf.c
+   + added new C function:
+         HB_BOOL hb_fileSave( const char * pszFileName,
+                              const void * buffer, HB_SIZE nSize );
+
+  * include/harbour.hbx
+  * src/harbour.def
+  * src/rtl/vfile.c
+    + added new PRG function:
+         hb_vfSave(  <cFileName>, <cFileBody> ) --> <lOK>
+
+  * src/rtl/vfile.c
+    * set FError() code in hb_vfLoad()
+
+2025-08-17 18:27 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.h
+  * contrib/gtqtc/gtqtc1.cpp
+    + added support for disabling title and frames of console window by
+         hb_gtInfo( HB_GTI_WINTITLE, <lNoFrame> )
+
+  * src/rtl/transfrm.c
+    ! fixed bug in "@S<n>" transformation when multibyte CDP is used
+
+2025-07-19 19:44 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbhpdf/core.c
+    + HPDF_GetPageByIndex( hDoc, nIndex ) --> hPage / NIL
+      suggested by Luigi Ferraris
+
+  * contrib/hbhpdf/tests/harupdf.prg
+    + test the above (disabled by default)
+
+  * README.md
+    * updated CI badge(s) to GitHub Actions - they also cover
+      the strict compilation mode, definitions are currently
+      located in the same file as normal
+
+    ! cleaned up links, mostly in tools section, some were
+      broken, for others switched to https where applicable
+
+    * mention HB_CCPREFIX= support for clang
+
+  * contrib/hbdoc/hbdoc.prg
+  * contrib/hbformat/utils/hbformat.prg
+  * contrib/hbnetio/utils/hbnetio/hbnetio.prg
+  * package/harbour.mft
+  * package/harbour.rc
+  * src/compiler/hbusage.c
+  * utils/hbi18n/hbi18n.prg
+  * utils/hbtest/hbtest.prg
+    * bumped copyright year to 2025
+
+2025-07-10 14:04 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbpost.hbm
+    ! fix missing contrib/*/tests/files when using "make install"
+      and HB_INSTALL_PREFIX.
+      Thanks Jose Quintas for reporting (issue #310)
+
+2025-07-09 15:04 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbclass.ch
+    ! fixed class declaration to allow muliple PP run - thanks to Wen Sheng
+      for slef conatin example
+
+2025-07-07 16:17 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * config/win/clang.mk
+    + add resource compiler detection chain to first stage,
+      now harbour.exe binary should also have manifest resource
+      compiled in when clang is used. Previously second stage rc
+      calling was implemented only in hbmk2.
+
+  * utils/hbmk2/hbmk2.prg
+    ! fixed disappearing llvm-ar with fallback to ar, spotted
+      in windows-ci/MSYS2
+
+2025-07-07 13:42 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * .github/workflows/windows-ci.yml
+    * libgd, qt5-base not available in MSYS x86
+
+  * ChangeLog.txt
+    + entry in prev skipped during merge
+
+2025-07-05 20:20 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  + config/wasm/global.mk
+  + config/wasm/libs.mk
+  + config/wasm/emcc.mk
+  * utils/hbmk2/hbmk2.prg
+  * contrib/hbrun/hbrun.hbp
+    + add basic support for build Harbour into JS/WebAssembly using
+      emscripten, using these settings:
+        HB_PLATFORM=wasm HB_COMPILER=emcc HB_BUILD_3RDEXT=no
+
+    * {abstr} is now a hbmk2 keyword to possibly group all
+      toolsets similar in flavour: WASI/clang, JS/emscripten
+      These most likely will be targeting plaforms which are not
+      full operating-systems, they are also commonly qualified as
+      sandbox solutions.
+
+    * introduced __PLATFORM__WASM and __PLATFORM__ABSTRACT .prg defines
+
+  * utils/hbmk2/hbmk2.prg
+    + allow to specify hb_ProgName() value at build-time for platforms
+      where the function cannot return a meaningful value (f.e.
+      JS/WebAssembly)
+    ; TODO: Add support for passing hb_ProgName() value command-line
+            parameter, f.e. `--hb:self=hbrun`
+
+  * config/global.mk
+  * include/hbsetup.h
+    * consider abstract/emscripten targets similar to linux-like
+
+  * src/rtl/arc4.c
+    ! fix to build under emscripten (which is assumed to be a
+      linux-like environment)
+
+  * src/vm/extrap.c
+    ! emscripten mimics UNIX/Linux to some extent, but there is no
+      sigaltstack() implementation
+
+  ; though platform/compiler names are not currently compatible
+    with origin, this WebAssembly platform support was guided by
+    Harbour 3.4:
+    2017-06-09 01:10 UTC Viktor Szakats (vszakats users.noreply.github.com)
+    as usual Viktor was here before, many thanks!
+
+  ; example project, how to make a multi-platform GUI application which
+    also targets WebAssembly, can be found here:
+    https://github.com/alcz/harbour-cimgui-sokol-starterkit/
+
+2025-03-25 13:54 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+    ! pacified warnings
+
+  * contrib/hbssl/ssl.c
+  * contrib/hbssl/sslctx.c
+    ! use 64-bit integers in SSL_[CTX]_[s|g]et_options() for OpenSSL >= 3.0
+
+2025-03-20 06:30 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rtl/cdpapihb.c
+    ! fixed hb_transalte() to not clear passed string
+      when neither CPIN nor CPOUT is set
+
+  * src/rtl/hbgtcore.c
+    ! fixed hb_gtAttach() to properly work with empty GT pointer
+
+2025-02-21 11:16 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbcurl/hbcurl.hbp
+    + added Windows architecture specific libcurl names:
+      libcurl-x64.dll, libcurl-arm64.dll as suggested
+      by @carles9000 in #382
+
+2025-02-11 04:21 UTC+0100 Antonio Linares (alinares/at/fivetechsoft.com)
+  * contrib/hbcurl/core.c
+    + implemented required explicit cast reported by Lorenzo Fiorini
+
+2025-02-03 12:26 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbdefs.h
+  * contrib/sddsqlt3/core.c
+    - removed HB_WATCOM_64BUG macro - new versions of OW 2.0 supports 64bit
+      integers in preprocessor directives - Many thanks to Aleksander who
+      reported the problem on OpenWatcom V2 forum
+    + added test for 64bit support in C preprocessor suggested by Aleksander
+
+  * .github/workflows/windows-ci.yml
+    * minor simplification
+
+2025-02-03 10:50 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbcurl/core.c
+    * formatting, use HB_IT_EVALITEM instead ( HB_IT_BLOCK | HB_IT_SYMBOL )
+
+2025-02-03 10:18 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbcurl/core.c
+    ! reverted static keyword
+
+  * ChangeLog.txt
+    ! formatting
+
+2025-02-03 09:09 UTC+0100 Antonio Linares (alinares/at/fivetechsoft.com)
+  * contrib/hbcurl/core.c
+    ! HB_CURLOPT_WRITEFUNCTION implemented support
+      Required to use AI Ollama from Harbour so the tokens are visible to the user
+      as they are generated
+
+2025-02-03 08:42 UTC+0100 Detlef Riekenberg 
+  * src/common/hbver.c
+    ! Open Watcom versions numbers started with "1.0" after the latest commercial
+      Watcom 11.0c. TinyC has no 1.0 release yet and is currently at 0.9.28rc.
+
+2025-02-01 08:37 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  + config/android/clang.mk
+    + allow to create android builds with CLANG
+  * config/common/watcom.mk
+    ! fixed C compilation in sh like shells
+
+2025-01-30 19:59 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * utils/hbmk2/hbmk2.prg
+    ! issue #379 follow-up to OpenWatcom target platform
+      autodetection, hbmk2 needed similar patching
+
+2025-01-30 17:58 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/3rd/sqlite3/sqlite3.c
+    * for GCC >= 14 builds added
+         #pragma GCC diagnostic ignored "-Wstringop-overread"
+
+  * contrib/3rd/sqlite3/sqlite3.hbp
+    * removed
+         -cflag=-Wno-stringop-overread
+      used in all GCC builds when HB_BUILD_TEST='strict'
+
+  * contrib/3rd/sqlite3/sqlite3.diff
+    * regenerated
+
+2025-01-30 16:19 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+    ! casting
+
+  * include/hbcompdf.h
+    * removed unnecassary parenthesies and indenting
+
+  * src/rtl/errint.c
+    * added
+         #pragma GCC diagnostic ignored "-Wnull-dereference"
+
+  * src/vm/dlmalloc.c
+    - removed
+         #pragma GCC diagnostic ignored "-Wnull-dereference"
+
+  * src/vm/fm.c
+    + added
+         #pragma clang diagnostic ignored "-Wgnu-null-pointer-arithmetic"
+         #pragma GCC diagnostic ignored "-Warray-bounds"
+         #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+         #pragma GCC diagnostic ignored "-Walloc-size"
+
+2025-01-30 11:54 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/vm/Makefile
+  * src/vm/vmmt/Makefile
+  * src/vm/dlmalloc.c
+    * In GCC builds >= 6.1 use
+         #pragma GCC diagnostic ignored "-Wnull-dereference"
+      instead of foringg HB_FM_STD_ALLOC
+
+2025-01-30 04:23 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbzebra/datamtrx.c
+    * added '#pragma GCC diagnostic ignored "-Warray-bounds"'
+      to disable GCC 12, 13 and 14 false warnings about array bounds for
+      static constant data
+
+  * contrib/hbzebra/hbzebra.hbp
+    * removed -Wno-error=array-bounds C compiler parameter used in all GCC
+      builds
+
+2025-01-30 03:56 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbzebra/datamtrx.c
+  * contrib/sddoci/core.c
+    * reverted modifications committed by mistake
+
+2025-01-30 03:51 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/vm/hvm.c
+    * changed returned type of hb_vmCalcIntWidth() to avoid casting
+
+2025-01-30 03:34 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbdefs.h
+    * added final workarounds for OpenWatcom 2.0 bug in 64bit expressions used
+      in #[el]if statements
+
+2025-01-30 02:48 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/sddsqlt3/core.c
+  * include/hbdefs.h
+  * src/compiler/gencc.c
+  * src/rtl/abs.c
+  * src/vm/hvm.c
+    * added workarounds for OpenWatcom 2.0 bug in 64bit expressions used
+      in #[el]if statements
+
+2025-01-29 13:50 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/bio.c
+    ! respect OPENSSL_NO_SOCK macro
+
+  * contrib/hbssl/bio.c
+  * contrib/hbssl/err.c
+  * contrib/hbssl/evp.c
+  * contrib/hbssl/pem.c
+    * disabled deprecated functions which do nothinng in OpenSSL 3.0
+
+  * src/rtl/filesys.c
+  * src/rtl/hbcom.c
+  * src/rtl/hbproces.c
+  * src/rtl/hbsocket.c
+  * src/rtl/net.c
+  * src/rtl/netusr.c
+  * src/vm/dynlibhb.c
+    * updated for OpenWatcom 2.0 builds
+
+2025-01-28 20:27 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * config/global.mk
+    ! fixed OpenWatcom target platform autodetection to conform with
+      progress OW is making, as it was kindly reported in issue #379
+
+2025-01-28 13:46 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/hbssl.h
+  * contrib/hbssl/evppkey.c
+  * contrib/hbssl/rsa.c
+    * reenabled hb_RSA_par_remove() for old OpenSSL() versions (<=0.9.6) which
+      do not support RSA_up_ref()
+
+  * contrib/hbssl/ssl.c
+    ! use
+         x509 = X509_dup( x509 );
+         X509_check_purpose( x509, -1, 0 );
+      instead of
+         X509_up_ref( x509 );
+      in OpenSSL versions prior 0x10100000L - they do not support X509_up_ref()
+
+  * contrib/hbssl/x509.c
+    * check passed parameters more strictly
+    * return NIL when X509 certificate cannot be allocated/accessed
+
+2025-01-28 12:23 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/bio.c
+    ! do not leave dummy BIO declaration for OpenSSL < 1.1.0
+
+2025-01-28 12:01 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/bio.c
+    ! use BIO_ADDR* in OpenSSL >= 1.1.0 and do not use it in LibreSSL
+
+2025-01-28 11:34 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/hbssl.hbx
+  * contrib/hbssl/bio.c
+    ! fixed BIO_set_conn_int_port() to work with OpenSSL >= 1.1
+      (emulation with BIO_set_conn_port())
+    ! fixed BIO_get_conn_ip() to work with OpenSSL >= 1.1
+      (emulation with BIO_get_conn_address() and BIO_ADDR_hostname_string())
+    + added BIO_get_conn_address(), it returns HB_SOCKET compatible array
+      with address
+
+  * contrib/hbssl/hbssl.hbx
+  * contrib/hbssl/sslctx.c
+    + added new function SSL_CTX_use_RSAPrivateKey()
+    ! respect OPENSSL_NO_RSA macro in other SSL_CTX_use_RSA*() functions
+
+  * contrib/hbssl/evp.c
+    ! use EVP_CIPHER_key_length() and EVP_CIPHER_iv_length() in
+      EVP_BytesToKey() to detect the exact key and iv length.
+
+  * contrib/hbssl/hbssl.h
+  * contrib/hbssl/evppkey.c
+  * contrib/hbssl/rsa.c
+    * removed hb_RSA_par_remove() function, use RSA_up_ref() instead
+
+  * contrib/hbssl/hbssl.h
+  * contrib/hbssl/x509.c
+  * contrib/hbssl/pem.c
+  * contrib/hbssl/ssl.c
+    * removed 2-nd parameter ( HB_BOOL fRelease ) from hb_X509_ret(),
+      use X509_up_ref() instead
+
+  * contrib/hbssl/pem.c
+    * respect OPENSSL_NO_DSA, OPENSSL_NO_DH and OPENSSL_NO_RSA macros
+
+  * contrib/hbssl/ssl_sock.c
+    * added casting to pacify SSL_set_fd() warning and updated link with
+      description of the problem
+
+2025-01-26 09:57 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/3rd/sqlite3/sqlite3.hbp
+    * use -Wno-unknown-warning-option also in GCC MacOSX builds
+
+2025-01-26 09:37 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/vm1-ci.yml
+    * reenabled freebsd builds
+    * be sure N_CPUS is always set
+    * show compiler version before build
+
+  * contrib/3rd/sqlite3/sqlite3.hbp
+    * enable -Wno-unknown-warning-option only for CLANG - older GCC versions
+      does not like it
+    * use -Wno-stringop-overread instead of -Wno-error=stringop-overread,
+      Unlike Wno-error=* the unknown -Wno-* options are ignored by most of
+      old GCC compilers
+
+2025-01-25 23:25 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/vm1-ci.yml
+    * add path to sysctl call
+
+2025-01-25 17:45 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/vm1-ci.yml
+    * enablkled freeimage
+    * set HB_BUILD_TEST to ${{matrix.strictness}}
+    * reenabled full strict build
+
+2025-01-25 17:14 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/bio.c
+  * contrib/hbssl/evpciph.c
+  * contrib/hbssl/evpenc.c
+  * contrib/hbssl/evpmd.c
+  * contrib/hbssl/ssl.c
+    * updated to compile with newer versions of LibreSSL
+
+2025-01-25 12:08 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+    ! fixed curl_easy_getinfo( <curl>, CURLINFO_CERTINFO, <arg> ) call. The
+      argument should be 'struct curl_certinfo **' not 'struct curl_slist **'
+
+2025-01-25 11:14 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+    ! declare buffer for CURLOPT_ERRORBUFFER as 'char *' instead of
+      'unsigned char *', the exact buffer type is chcked in typecheck-gcc.h
+      and 'unsigned char *' does not pass this test
+    ; QUESTION:
+      Why curl_easy_setopt( <pCurl>, HB_CURLOPT_ER_BUFF_SETUP, [<nBufSize>] )
+      accepts <nBufSize> parameter?
+      Buffer smaller then CURL_ERROR_SIZE means GPF and larger waste of memory.
+      The only acceptable value for <nBufSize> is CURL_ERROR_SIZE.
+      The allocate buffer should be initialized with '\0' otherwise we will
+      have other GPF trap when user call curl_easy_er_buff_get() before any
+      error is set. This bug was fixed in CURL 7.60.0.
+
+2025-01-25 10:19 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/vm1-ci.yml
+  * .github/workflows/vm2-ci.yml
+    * updated to always set number of CPUs for -j GNU make switch,
+      using unlimited number of forks (-j without parameter) causes
+      'Resource temporarily unavailable' error
+
+2025-01-24 19:15 UTC-0300 Mario Wan Stadnik (wanstadnik gmail.com)
+  * utils/hbmk2/hbmk2.prg
+    * http://timestamp.verisign.com/scripts/timstamp.dll has limped 
+      along for the last few years and had been working in a sort 
+      of depreciated state, but the new owners of the certificate 
+      issuing business, DigiCert, have issued a migration alert so
+      we are switching to: http://timestamp.comodoca.com/authenticode
+    ; It allows the user to choose the algorithm: SHA256 or SHA384,
+      by appending ?td=sha384 to above URL
+
+2025-01-24 15:02 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbct/dattime3.c
+    ! fixed in block variable declaration for strict ANSI C compat
+    * code formatting
+    ; both borrowed from Viktor's fork, thanks
+      https://github.com/vszakats/hb/commit/aa4665f16ff92443681fc0b7a2f4a6bd67c6a199
+      https://github.com/vszakats/hb/commit/d9f37296b01bb5a5fef1afb50c91ec0ed4fe900e
+
+  * src/rdd/dbcmd.c
+    * note about C5.3/5.2 DBAPPEND( [<lUnlockAll>=.t.] ) updated again
+      upon Przemek notification, thanks
+
+2025-01-24 13:28 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/vm1-ci.yml
+    * switched the runner from macos-latest to ubuntu-latest
+      Support for macOS runners has been deprecated.
+
+2025-01-24 13:23 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/vm1-ci.yml
+    * updated to recent cross-platform-actions releae
+
+2025-01-24 12:32 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbwin/olecore.c
+    * pacified false MSVC warning. It's very seldom situation that I'm adding
+      code to pacify false compiler warnings anyhow in this case it cost in
+      practice nothing so I decided to do that.
+
+  * contrib/xhb/hboutdbg.c
+  * src/rtl/gtcrs/gtcrs.c
+    * NULL pointer casting to pacify warning
+
+  * src/pp/hbpp.c
+    % do not created new iLen variable but reuse the one previously declared
+
+  * src/vm/classes.c
+    % allocate puiMsgIdx as array of HB_USHORT items instead of HB_SYMCNT.
+      This modification only reduces the memory usage and has no effect on
+      number of accepted symbols.
+    * changed 'HB_SYMCNT uiHashKey' to 'HB_SIZE nHashKey' to avoid explicit
+      casting in the code
+
+2025-01-24 10:10 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/hbssl.hbm
+    * added -Wno-error=deprecated-declarations to suppress errors in Solaris
+      strict builds compiled with -Werror
+      EVP_des_*() except EVP_des_ede3*()), EVP_desx_*(), EVP_rc[24]*() and
+      EVP_md[245]*() are deprecated
+
+2025-01-24 09:21 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/ssl.c
+  * contrib/hbssl/sslctx.c
+    * protect access to SSLv3_*() functions with #ifndef OPENSSL_NO_SSL3_METHOD
+
+2025-01-24 07:02 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/vm2-ci.yml
+    * reenabled solaris build with release 11.4-gcc
+
+2025-01-23 17:45 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbdate.h
+  * src/common/hbdate.c
+  * src/harbour.def
+    + added new C functions:
+         HB_BOOL hb_timeStrGetUTC( const char * szTime,
+                                   int * piHour, int * piMinutes,
+                                   int * piSeconds, int * piMSec,
+                                   int * piUTCOffset );
+         HB_BOOL hb_timeStampStrGetUTC( const char * szDateTime,
+                                        int * piYear, int * piMonth,
+                                        int * piDay, int * piHour,
+                                        int * piMinutes, int * piSeconds,
+                                        int * piMSec, int * piUTCOffset );
+      They can decode timestamp value with ISO 8601 UTC offset.
+
+  * src/common/hbdate.c
+    * use hb_timeStampStrGetUTC() in hb_timeStampStrGetDT() and return UTC
+      time if it was with UTC offset
+      Now Harbour compiler accept timestamp strings with with UTC offset, i.e.
+         ? t"2025-01-22 00:45 UTC+0100" // => 2025-01-21 23:45:00.000
+      Also HB_StrToTS() supports it.
+
+  * src/pp/hbpp.c
+    * use new hb_timeStampStrGetDT() to decode timestamp from ChangeLog to
+      build revision number. It also fixes bug with decoding negative UTC
+      offsets.
+
+2025-01-23 11:47 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbcurl/core.c
+  * contrib/hbcurl/hbcurl.ch
+  * contrib/hbcurl/hbcurl.hbx
+    * applied more cleanups, following Viktor Szakats guidance in his repo:
+      https://github.com/vszakats/hb/commit/61276032177e2f4e8cfac22080c1e0b14eb0d432
+      - add `HB_CURLM_ERROR` to indicate error in hbcurl wrapper.
+      - replace use of `HB_CURLM_INTERNAL_ERROR` with `HB_CURLM_ERROR`.
+      - sync Harbour variable integer sizes with curl ones.
+      - tidy up a variable scopes.
+      - drop unused variable.
+      - omit `hb_ret()` (it's a no-op).
+      - formatting.
+      - add functions to `hbcurl.hbx`.
+
+    + add curl_ws_send()/curl_ws_recv() - WebSocket connectivity,
+      borrowed from Viktor's fork, thanks again!
+      https://github.com/vszakats/hb/commit/2c71a5c9402cdbb7a649598e5a5ed6f3217d94b4
+
+  * src/rdd/dbcmd.c
+    * note about C5.3 and Harbour extensions to
+      DBAPPEND( [<lUnlockAll>=.t.] ), thanks Viktor
+
+  * ChangeLog.txt
+    ! typos
+
+2025-01-22 21:08 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * utils/hbmk2/hbmk2.prg
+    * do not interrupt whole build process when optional dependency package
+      is disabled explicitly by -depcontrol=<optdeppkg>:no
+
+  * contrib/gtqtc/gtqtc.hbc
+  * contrib/gtqtc/gtqtc.hbp
+    * respect QT_SELECT envvar looking for QT dependencies
+
+2025-01-21 09:45 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/windows-ci.yml
+    * install freeimage only in 64-bit environment,
+      it's not available in the 32-bit one
+
+  * contrib/3rd/sqlite3/sqlite3.hbp
+    * use -Wno-unknown-warning-option to pacify problems with old
+      clang versions which do not understand -Wno-stringop-overread
+
+2025-01-21 09:08 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/linux-ci.yml
+    * disabled global -Wno-error=... C compiler parameters
+    * set HB_BUILD_TEST="${{matrix.strictness}}" envvar
+
+  * .github/workflows/macos-ci.yml
+  * .github/workflows/vm2-ci.yml
+    * disabled global -Wno-error=... C compiler parameters
+    * set HB_BUILD_TEST="${{matrix.strictness}}" envvar
+    * reenabled hbfimage contrib library
+
+  * .github/workflows/windows-ci.yml
+    * reenabled hbfimage contrib library
+
+2025-01-21 08:46 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/3rd/sqlite3/sqlite3.hbp
+    * do not enable -Wno-error=stringop-overread C compiler flag in MS-Windows
+      clang builds and HB_BUILD_TEST='strict' - this C clang version does not
+      support it
+
+2025-01-21 08:12 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/linux-ci.yml
+    * reenabled hbfimage contrib library
+
+  * src/vm/Makefile
+  * src/vm/vmmt/Makefile
+    * set -DHB_FM_STD_ALLOC C compiler parameter for HB_BUILD_TEST='strict'
+
+2025-01-21 06:45 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * .github/workflows/windows-ci.yml
+    * disabled global -Wno-error=... C compiler parameters
+    * set HB_BUILD_TEST="${{matrix.strictness}}" envvar
+
+  * contrib/3rd/sqlite3/sqlite3.hbp
+    * set -Wno-error=stringop-overread C compiler parameter for GCC builds
+      when HB_BUILD_TEST='strict'
+
+  * contrib/hbzebra/hbzebra.hbp
+    * set -Wno-error=array-bounds C compiler parameter for GCC builds
+      when HB_BUILD_TEST='strict'
+
+2025-01-21 01:11 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbapigt.h
+    ! removed dummy declaration for hb_inkeyExit()
+
+  * include/hbexprop.h
+    ! removed dummy declarations for hb_compExprNewCodeblockExpr(),
+      hb_compExprNewAssign() and hb_compExprEqual()
+    ; marked compiler only hb_compExpr*() functions
+
+  * include/hbgtcore.h
+    ! removed dummy declaration for hb_gt_gcMark()
+
+  * include/hbxvm.h
+    ! removed dummy declarations for hb_xvmPushBlockLarge() and
+      hb_xvmMacroPushArg()
+
+  * src/harbour.def
+    + added hb_iswinbuild()
+    + added exported PCRE variable pcre_stack_guard
+    + added exported ZLIB functions: gzfread(), gzwrite(),
+      adler32_z(), crc32_z(), crc32_combine_gen(),
+      crc32_combine_gen64(), crc32_combine_op(),
+      uncompress2(), deflateGetDictionary(),
+      inflateValidate(), inflateCodesUsed()
+
+2025-01-20 10:43 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbapifs.h
+    ! added missing declaration for hb_fileParamGet()
+
+  * include/hbgtcore.h
+    * added HB_EXPORT attribute for hb_gt_getClipboard(), hb_gt_setClipboard()
+      and hb_gt_dos_keyCodeTranslate()
+
+  * include/hbrdddbf.h
+    ! removed declaration for hb_dbfTranslateRec() function - this functions
+      was removed many years ago
+
+  * include/harbour.hbx
+  * src/harbour.def
+    ! fixed order of declared functions - they should be sorted.
+
+2025-01-20 01:00 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/hbcurl.hbx
+    ! added missing new functions: curl_easy_er_buff_get() and curl_multi_*()
+
+2025-01-19 19:38 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/hbssl.h
+    * set OPENSSL_API_COMPAT to 10100 instead of 10100 to reduce conflicts
+      with OPENSSL_CONFIGURED_API
+
+2025-01-19 14:33 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rdd/dbfcdx/dbfcdx1.c
+    % Removed always false dummy condition. For
+         pPage->TagParent->MaxKeys >= 2 &&
+         ( ( iKeys + pPage->TagParent->MaxKeys - 1 )
+                   / pPage->TagParent->MaxKeys ) == 1
+      the expression
+         iKeys > ( ( pPage->TagParent->MaxKeys * 3 ) >> 1 )
+      was alwas false.
+      As side effect this modification pacifies the buggy GCC warnings.
+
+2025-01-19 02:08 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/hbssl.h
+  * contrib/hbssl/rsa.c
+    * renamed hb_RSA_par_free() to hb_RSA_par_remove()
+
+  * contrib/hbssl/evppkey.c
+    * few code clenups
+
+  * contrib/hbssl/x509.c
+    ! use GC pointer items instead of raw ones
+
+2025-01-18 09:33 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/evp.c
+    * clear key and iv buffers before passing them to EVP_BytesToKey()
+      otherwise some uninitialized bytes are accessed and valgrind reports
+      uninitialized memory access
+
+  * contrib/hbssl/evpciph.c
+    ! fixed typo in index in my previous commit
+
+  * contrib/hbssl/tests/digest.prg
+    ! use OPENSSL_VERSION_NUMBER() instead OPENSSL_VERSION() to retrieve
+      OpenSSL version number
+
+  * contrib/hbssl/tests/inetssl.prg
+    * updated to use 2048 RSA certificates instead of 1024 ones which are
+      no more supported by modern OpenSSL libraries
+
+  * contrib/hbssl/tests/pem.prg
+    * cleaned output
+
+2025-01-18 05:03 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rdd/dbfnsx/dbfnsx1.c
+  * src/rtl/dates.c
+  * src/rtl/hbtoken.c
+    ! pacified few stupid warnings
+
+2025-01-18 04:59 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/bio.c
+    ! added missing BIO_free() call in HB_BIO destructor
+    ! fixed BIO_free() function to properly operate on HB_BIO structure
+
+  * contrib/hbssl/evp.c
+    ! fixed EVP_PKEY_free() to work with Harbour GC pointer items instead of
+      raw pointer items
+
+  * contrib/hbssl/evpciph.c
+    ! fixed EVP_SealInit() and EVP_OpenInit() to work with Harbour GC pointer
+      items instead of raw pointer items
+
+  * contrib/hbssl/hbssl.h
+  * contrib/hbssl/rsa.c
+  * contrib/hbssl/evppkey.c
+    + added new C functions:
+         void hb_RSA_par_free( int iParam );
+         EVP_PKEY * hb_EVP_PKEY_get( PHB_ITEM pItem );
+         void hb_EVP_PKEY_free( PHB_ITEM pItem );
+
+  * contrib/hbssl/evppkey.c
+    ! fixed EVP_PKEY_assign_RSA to work with RSA Harbour GC pointer
+      item instead of raw pointer items
+
+  * contrib/hbssl/pem.c
+    ! redirect old dummy functions to current ones using Harbour GC pointer
+      items:
+         PEM_read_bio_PrivateKey() => PEM_read_PrivateKey()
+         PEM_read_bio_PUBKEY()     => PEM_read_PUBKEY()
+         PEM_read_bio_X509()       => PEM_read_X509()
+         PEM_read_bio_X509_AUX()   => PEM_read_X509_AUX()
+      Now they should work.
+
+  ; above are only few fixes for chosen problems and still there are many
+    others, most of HBSSL code should be rewritten from scratch to work
+    with OpenSSL 3.x API
+
+2025-01-16 01:00 UTC+0100 Fazio Diego (diegohfazio gmail.com)
+  * contrib/hbcurl/hbcurl.ch
+    + added HB_CURLOPT_ER_BUFF_SETUP
+      curl_easy_setopt( curl, HB_CURLOPT_ER_BUFF_SETUP ) <- Initialize ERRORBUFFER
+  * contrib/hbcurl/core.c
+    + added PRG functions:
+      read error from ERRORBUFFER
+      see https://curl.se/libcurl/c/CURLOPT_ERRORBUFFER.html
+      curl_easy_er_buff_get( curl ) -> cErrorBuffer
+
+2025-01-10 10:15 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * src/rtl/listbox.prg
+    * merged #372 from Kamil, thanks for the patch.
+      Applied minor reformat .NOT. -> ! and added a comment
+      about buggy ListBox:hitTest() on no-box dropdown in
+      Cl*pper 5.3.
+
+2025-01-09 12:00 UTC+0100 Kamil Przybylski (kprzybylski quay.pl)
+  * src/rtl/listbox.prg
+    ! fixed nTop not being incremented in ListBox:hitTest() for no-box dropdown
+    * replaced inconsistent references to ::nTop with nTop
+    * renamed variables to better reflect their role
+
+2025-01-08 13:14 UTC+0100 Kamil Przybylski (kprzybylski quay.pl)
+  * src/rtl/listbox.prg
+    ! fixed nTop variable not being assigned properly in ListBox:hitTest()
+
+2025-01-07 22:49 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbcurl/hbcurl.ch
+    * updated HB_CURLOPT_SSL_OPTIONS: HB_CURLSSLOPT_*
+
+    + added HB_CURLMSG_RESP_HANDLE, HB_CURLMSG_RESP_HPOS
+      mappings of array elements returned by
+      curl_multi_info_read( <hMulti>[, <aHandles> ]) -> <aResults>
+
+  * contrib/hbcurl/core.c
+    * adapted @emazv72 contribution from:
+      https://github.com/vszakats/hb/pull/344
+      Many thanks, it could be useful for managing multiple transfers,
+      by extending some kind of Inkey() loop or in many other
+      scenarios.
+
+    + added curl lib version guards
+
+    * minor code and comment formattings
+
+    + extended function
+      curl_multi_info_read( <hMulti>[, <aHandles> ]) -> <aResults>
+      with a possibility to return real GC pointer of specific
+      transfer related to reported event. <aHandles> should be
+      specified if this is expected.
+
+  + contrib/hbcurl/tests/multi.prg
+    + demo of the additions
+
+2025-01-07 21:43 UTC+0100 Emanuele Zavallone (emanuele.zavallone gmail.com)
+  * contrib/hbcurl/easy.c
+  * contrib/hbcurl/hbcurl.ch
+    + added multi interface implementation
+
+2025-01-07 12:24 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * src/common/hbver.c
+    * indent cleanup
+
+  * src/rtl/filesys.c
+  * src/rtl/fssize.c
+    ! restore dynamic calling of GetFileAttributesEx() on
+      Windows (significant only on very old systems)
+
+2025-01-02 14:33 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * config/global.mk
+  * config/win/clang-noauto.mk
+  * config/win/clang.mk
+    * supplemented config for Windows clang cross compilers
+      distributed in multilib fashion, like Martin Storsjo's:
+      https://github.com/mstorsjo/llvm-mingw
+
+    + HB_CCPREFIX= support for clang on Windows, you can build
+      ARM64 Harbour from AMD64 hosts using mentioned toolchain:
+      set PATH=C:\llvm-mingw\bin;%PATH%
+      set HB_COMPILER=clang
+      win-make (build for your host first)
+      set HB_CCPREFIX=aarch64-w64-mingw32-
+      set HB_HOST_BIN=<HarbourPath>\bin\win\clang\ (if not autodetected)
+      win-make
+
+    ; cross compiling from Unix hosts is not yet tested, but
+      looks very close to be possible
+
+    ! fixed typo's
+
+  * utils/hbmk2/hbmk2.prg
+    * changed llvm-ar call to also respect HB_CCPREFIX
+
+2024-12-29 00:28 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * src/rtl/hbproces.c
+    ! in process creating functions like hb_processRun(), *Open(),
+      on Android: don't use setuid( getuid() ) method for resetting
+      attributes as it rises "Bad system call" and the process is not
+      executed. This fixes building Harbour in hbmk2 stage on Android
+      device itself (for example using Termux) and can fix deploying
+      multi-process Android apps. For devices older than Android 8,
+      where the kernel was not hardened, please report any regresions,
+      if you have such multi-process deployments.
+
+  * ChangeLog.txt
+    % stripped spaces before EOLs
+
+2024-12-19 10:24 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/rddsql/sqlbase.c
+    % cleanup unnecessary braces
+
+  * ChangeLog.txt
+    + missing entry from pull request #364
+
+2024-12-18 21:48 UTC-0800 Eric Lendvai (harbour.wiki)
+  * contrib/rddsql/sqlbase.c
+  * contrib/rddsql/sqlmix.c
+    + added support to timestamp field type.
+      You can now use "@" in DbCreate as the timestamp field type.
+      Thanks to Grigory Filatov for fixing crash!
+
+2024-12-17 03:07 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.hbc
+    ! fixed dependency macros - hbmk2 defines HB_HAS_* only for optional packages
+
+2024-12-17 01:09 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.hbc
+  * contrib/gtqtc/gtqtc.hbp
+    ! fixed dependency macros
+
+  * contrib/gtqtc/hbmk2_qtgt.hb
+    * set QT_SELECT envvar for systems which supports different QT versions
+
+  * utils/hbmk2/hbmk2.prg
+    + added "dept" => hbmk[ _HBMK_hDEPTMACRO ] to hbmk hash table passed to
+      hbmk2 plugins
+
+2024-12-15 20:54 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.h
+  * contrib/gtqtc/gtqtc.hbc
+  * contrib/gtqtc/gtqtc.hbp
+  * contrib/gtqtc/gtqtc1.cpp
+    * updated to compile with Qt6
+
+2024-12-13 09:06 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/compiler/harbour.y
+  * src/macro/macro.y
+    * replaced depreciated bison macro %pure-parser with %define api.pure
+
+  * src/compiler/complex.c
+  * src/macro/macrolex.c
+  * src/compiler/harbour.y
+  * src/macro/macro.y
+    * replaced depreciated bison macro %name-prefix with %define api.prefix
+
+  ; Warning: now Bison 2.6 or newer is required to regenerate Harbour grammar
+             files. If someone wants/needs to work with older bison versions
+             then it's enough to restore depreciated macros, Harbour compiler
+             and macros lexers will work with both versions.
+
+  * src/compiler/harbour.yyc
+  * src/compiler/harbour.yyh
+  * src/macro/macro.yyc
+  * src/macro/macro.yyh
+    * regenerated with Bison 3.02 (the same as before)
+    * re-added HB_SYMBOL_UNUSED( yynerrs ) to pacify some compilers warnings
+
+2024-12-12 21:30 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/compiler/genc.c
+    ! fixed detection of C function written in C inside
+      #pragma BEGINDUMP / #pragma ENDDUMP
+
+2024-12-12 21:18 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * ChangeLog.txt
+  * contrib/gtqtc/gtqtc.h
+  * contrib/gtqtc/gtqtc1.cpp
+  * contrib/hbzebra/datamtrx.c
+  * contrib/sddoci/core.c
+  * src/compiler/genc.c
+    ! reverted my unintentional commit from dummy branch
+
+2024-12-11 19:35 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/xhb/hbcompat.ch
+    ! fixed HSetAACompatibility() #xtranslate
+
+  * contrib/hbzebra/code39.c
+    * pacified warning, it's also fix for possible buffer overflow.
+
+  * include/hbcomp.h
+  * src/compiler/genc.c
+  * src/compiler/hbmain.c
+    * replaced function hb_compFunctionMarkStatic() with
+      hb_compFunctionSetScope()
+
+  * src/compiler/genc.c
+    * detect public prg functions written in C inside
+      #pragma BEGINDUMP / #pragma ENDDUMP and mark them as LOCAL ones
+
+  * src/vm/hvm.c
+    ! removed my pseudo fix from 2023-01-30 15:18 UTC+0100 Przemyslaw Czerpak.
+      It was ugly hack which can work only with some linkers.
+      This modification fixes FILE() function used with C functions written
+      without own symbol table
+
+  * src/rdd/dbf1.c
+    * minor code formatting
+
+2024-12-07 20:32 UTC-0300 Mario Wan Stadnik (wanstadnik gmail.com)
+  * utils/hbmk2/hbmk2.prg
+    * patch for MingW64 14.2.0 to find windres.exe automatically,
+      otherwise it failed with the resource compiler not found
+      error because it only looked for i686-w64-mingw32-windres.exe
+      instead of windres.exe.
+
+2024-12-04 15:25 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * src/common/hbver.c
+    ! added lacking VER_BUILDNUMBER definition that is missing
+      in very old compiler sets/SDKs (pre Windows 2000),
+      noticed by DF7BE - Wilfried Brunken in #362
+
+  * README.md
+    * slightly updated list of supported compilers and
+      examples to mention MSVC for ARM64 and Clang
+
+  * ChangeLog.txt
+    * hb_scan -> hb_hscan in prev
+
+2024-12-03 01:27 UTC-0300 Lailton Fernando Mariano (lailton/at/paysoft.com.br)
+  * src/vm/hashfunc.c
+    ! fixed issue hb_hscan when we are looking for a logical value as true.
+      Many thanks to Marcos Gambeta who found the problem.
+
+2024-10-28 16:57 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * src/rdd/dbf1.c
+    ! reading varchar binary field ("Q:B") from a .dbf
+      could free a wrong pointer in the record buffer.
+      Bug located and fixed by Marek.
+
+2024-10-25 14:09 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbziparc/ziparc.prg
+    ! return value of hb_zipDeleteFile() is not logical,
+      fix by Grigory Filatov.
+
+2024-10-18 07:56 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * src/common/hbver.c
+    * guard Win10 build number getter from the unknown,
+      using old Win32 API that is not going to be deprecated.
+
+2024-10-17 15:04 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * .github/workflows/windows-ci.yml
+    * update windows MSYS2 integration runner set of
+      requested packages. PGSQL, Firebird and MariaDB libs
+      are no longer available in the 32-bit environment
+
+    + add clang x86_64 compiler for testing under this CI
+
+  * include/harbour.hbx
+  * include/hbapi.h
+  * src/common/hbver.c
+  * src/harbour.def
+  * src/rtl/version.c
+    ! fixed Windows 11 detection, by vendor likings it has
+      NT Kernel Version stamped with 10.0, so now Build Number
+      is more significant as a recognition factor.
+
+    + new C helper functions hb_winisbuild(), hb_iswin11()
+
+    + added PRG function hb_osIsWin11()
+
+    * also try to detect new Windows Server versions
+
+  * config/win/clang.mk
+  * utils/hbmk2/hbmk2.prg
+  * ChangeLog.txt
+    ! recursion happening in the Makefiles rendered recently
+      introduced compatibility option unreliable. Changed to
+      use separate variable: HB_USER_FIXES=--mingw-script
+      You don't need it, the problem shouldn't exist, but
+      anyway...
+
+2024-10-10 14:21 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  + config/win/clang-noauto.mk
+    + additional clang flavour checking when the compiler is specified
+      via set HB_COMPILER=clang (not auto-detected)
+
+      This is important for distributions of clang that bundle both
+      gcc and clang in the same directory. Harbour 3.2 by default
+      prioritize gcc over clang.
+
+      For example you should be now able to build from winlibs.com by
+      Brecht Sanders with environment setup such as:
+      PATH=C:\winlibs\mingw64\bin;%PATH%
+      HB_COMPILER=clang
+      win-make
+
+  * config/global.mk
+    ! added workaround for common GNU Make issue with
+      $(dir path with spaces/file) macro, commonly striking on Windows
+      systems under "Program Files", but also possible in other setups.
+      Workaround is to call $(call dir_with_spaces,$(HB_COMP_PATH)).
+      I have only used this workaround in clang detection, but keep
+      this in mind while revisiting detection of another compiler.
+
+  * config/win/clang.mk
+  * utils/hbmk2/hbmk2.prg
+    * another rework of Clang on Windows detection (ARM64, x86_64, x86),
+      solved problems with different availability of resource compiler,
+      They are now probed in order: windres, llvm-windres, llvm-rc.
+
+    * added option to use MinGW INPUT(file.o) link scripts for old tools
+      To apply workaround with clang, set HB_USER_FIXES=--mingw-script
+      It is not supported in at least some of current clang toolchains,
+      but it's still needed to succesfully build on old ones (those
+      using GNU ld on Windows).
+
+2024-10-07 11:40 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * config/global.mk
+    ! detect ARM64 CPU on Windows also under non-native shell (MSYS2 sh)
+
+    * on unix also recognize aarch64 from uname
+
+  * include/hbsetup.h
+    * __MINGW64__ define is not x86_64 specific anymore
+
+  * config/win/clang.mk
+  * utils/hbmk2/hbmk2.prg
+    * reworked Clang on Windows detection (ARM64, x86_64, x86),
+      now it recognizes those flavours in PATH as distributed
+      by MSYS2 project and also Visual Studio 2022 Build tools.
+
+      Starting Harbour build process should be now possible
+      both from MSYS2 shell (with the special note to use "make"
+      command instead of "win-make" from sh) and regular batch
+      script/cmd shell.
+
+      Building on Clang distributed by MS x86_64:
+      PATH=<InstallPath>\BuildTools\VC\Tools\Llvm\x64\bin;%PATH%
+      win-make
+
+      Clang/MS ARM64:
+      PATH=<InstallPath>\BuildTools\VC\Tools\Llvm\ARM64\bin;%PATH%
+      win-make
+
+      Building on Clang x86_64 distributed by MSYS2 from cmd:
+      PATH=C:\msys64\clang64\bin;%PATH%
+      win-make
+
+      Clang/MSYS ARM64 called from cmd:
+      PATH=C:\msys64\clangarm64\bin;%PATH%
+      win-make
+
+  * src/common/hbver.c
+    * patched clang version string builder to skip duplicate version
+      number in some builds
+
+    * append processor architecture to clang compiler string
+      on non-Intel systems
+
+2024-09-14 21:26 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * tests/speedtst.prg
+    ! fix recursion bug i've made
+
+  * contrib/hbdoc/hbdoc.prg
+  * contrib/hbformat/utils/hbformat.prg
+  * contrib/hbnetio/utils/hbnetio/hbnetio.prg
+  * package/harbour.mft
+  * package/harbour.rc
+  * src/compiler/hbusage.c
+  * utils/hbi18n/hbi18n.prg
+  * utils/hbtest/hbtest.prg
+    * bumped copyright year to 2024
+
+2024-09-14 18:36 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  + config/win/msvcarm.mk
+  + config/win/msvcarm64.mk
+  * config/global.mk
+  * include/hbsetup.h
+  * utils/hbmk2/hbmk2.prg
+    + introduced support for Windows (10,11) ARM 64-bit platform
+      native compilers using Visual Studio 2022 Build Tools
+
+      before calling win-make, setup environment with:
+      <InstallPath>\BuildTools\VC\Auxiliary\Build\vcvarsarm64.bat
+
+      toolchain should be autodetected as following:
+      ! HB_HOST_PLAT: win (arm64)  HB_SHELL: nt
+      ! HB_PLATFORM: win (arm64) (auto-detected)
+      ! HB_COMPILER: msvcarm64 (auto-detected: C:/Program[...]/ARM64/)
+
+      to build final application with hbmk2 adding a valid Windows
+      Platform SDK / CRT paths to INCLUDE= and/or LIB= variable
+      is needed
+
+    ; cross compilation from AMD64 hosts is possible:
+      vcvars64.bat
+      win-make (build Harbour for your host first)
+      set HB_HOST_BIN=<HarbourPath>\bin\win\msvc64
+      vcvarsamd64_arm64.bat
+      win-make
+
+    + also added support for Windows for ARM 32-bit
+
+      before calling win-make, setup environment using:
+      <InstallPath>\BuildTools\VC\Auxiliary\Build\vcvarsarm.bat
+      or when cross compiling from ARM64 host:
+      <InstallPath>\BuildTools\VC\Auxiliary\Build\vcvarsarm64_arm.bat
+
+    ; please test Windows CE builds if you're using compiler newer
+      than VC2003 for ARM for possible regressions
+
+  * contrib/hbmlzo/3rd/minilzo/lzodefs.h
+    ! recognize ARM64 architecture on Windows to fix build error
+
+    ; consider updating to upstream minilzo 2.10, issue is fixed there
+
+  * src/common/hbver.c
+    * changed to add processor architecture for MSVC compiler string
+      on non-Intel systems, as exposed by hb_compiler(), harbour /build,
+      finalapp.exe //build
+
+  * tests/speedtst.prg
+    * workaround that processor architecture can now appear
+      in hb_compiler(), so it's not printed by speed test twice
+
+2024-08-17 17:37 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/xhb/xhberror.c
+    % cleaned code] to overload ERRORNEW() with XHB_ERRORNEW()
+
+  * src/rtl/fscopy.c
+    % removed unnecessary code
+
+  * src/rtl/vfile.c
+    ! fixed typo in comment
+
+  * src/vm/dynsym.c
+    + allow to use symbol items as parameter in functions:
+      hb_IsFunction(), __dynsGetIndex(), __dynsIsFun()
+
+2024-07-22 13:37 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/xhb/xhberror.c
+    ! fixed very bad bug introduced in this modification:
+         2023-01-31 23:19 UTC+0100 Przemyslaw Czerpak
+      It corrupted dynamic symbol table due to stupid mistake.
+      I overloaded whole function symbol instead of its address only.
+      Many thanks to Juan Gálvez who found the problem.
+
+  * include/hbdefs.h
+    ! fixed INT64_MIN definition
+
+  * src/vm/dynsym.c
+    * minor change in function order
+
+  * src/vm/memvars.c
+    + allow to use symbol items in the following functions:
+      __mvScope(), __mvExist(), __mvGet(), __mvGetDef(), __mvPut()
+
+2024-05-31 11:55 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * doc/en/rdddb.txt
+    ! update DBAPPEND( [<lUnlockAll>=.t.] ) documentation regarding
+      the default value and action of the parameter
+
+2024-05-31 11:49 UTC+0200 Aleksander Czajczynski (hb fki.pl)
+  * contrib/rddmisc/arrayrdd.prg
+    ! group of fixes contributed in #355 by @VarenL:
+      IndexOrd() didn't work, DbZap() didn't update indexes, problem
+      with larger number of indexes, erroneous AR_GOBOTTOM function.
+
+  + doc/en/rdddb.txt
+    + readded a 2017 copy
+
+  * contrib/hbamf/amfstdio.c
+    * flow-control is now optional, but still enabled by default
+
+    ! fix missing free when exiting the loop
+
+  * contrib/hbpgsql/rddcopy.c
+    ! fix c&p bug/typo in HB_PQCOPYFROMWA, corrected handling field list
+      passed in <aFiledNames> parameter
+
+      <lResult> := HB_PQCOPYFROMWA( <pConn>, <cTargetTable>, [<bWhileBlock>],
+                                   [<bForBlock>], [<aFieldNames>], [<nCount>],
+                                   [<lTrimStrings>], [<nPreBuffer>] )
+
+2024-05-13 02:39 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * ChangeLog.txt
+  * src/rtl/fscopy.c
+    ! fixed typos, thanks to Grigory Filatov and Pete
+
+  * include/harbour.hbx
+  * src/harbour.def
+    ! added hb_vfCopyFileEx() and hb_fileCopyEx()
+
+2024-05-09 23:23 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbapifs.h
+  * src/rtl/fscopy.c
+    + added new C function:
+         HB_BOOL hb_fileCopyEx( const char * pszSource, const char * pszDest,
+                                HB_SIZE nBufSize, HB_BOOL fTime,
+                                PHB_ITEM pCallBack );
+      Unlike hb_fileCopy() it is never redirected to remote server and copy
+      operation is always done locally.
+      pCallBack is codeblock or function symbol, it's executed at the
+      beginning and then on each nBufSize bytes written and receives two
+      parameters: nBytesWritten, nTotalSize.
+      Warning: nTotalSize could be 0 when non regular files like pipes or
+               sockets are copied.
+
+  * src/rtl/vfile.c
+    + added new PRG function:
+         hb_vfCopyFileEx( <cFileSrc>, <cFileDst>, [<nBufSize>=65536], ;
+                          [<lTimePreserve>=.t.], [<bCallBack>] ) --> <nResult>
+      It's wrapper to hb_fileCopyEx() C function.
+      For very big files setting <nBufSize> to greater value, i.e. 16777216
+      may increase performance.
+
+2024-04-10 15:39 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * utils/hbmk2/hbmk2.prg
+    ! fixed my last modification and check if HB_WITH_* contains
+      non empty value
+
+2024-03-07 13:41 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.hbp
+    ! do not detect QT5 when HB_BUILD_3RDEXT=no is set
+
+  * debian/rules
+    * removed LD_LIBRARY_PATH setting
+
+  * src/rdd/dbcmd.c
+  * src/rdd/wacore.c
+    ! moved code checking WA number from DbSelectArea() PRG function
+      to hb_rddSelectWorkAreaNumber() C function. It fixes few things
+      like:
+         DbSelectArea( 0 )
+      and also:
+         ? ( 0 )->( select() )
+
+2024-02-16 18:23 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbexpat/3rd/expat/expat.diff
+  * contrib/hbexpat/3rd/expat/loadlibr.c
+    ! use HB_WINAPI_GETPROCADDRESS() instead of GetProcAddress()
+      in WinCE builds
+
+  * contrib/hbhpdf/3rd/libhpdf/hpdfstre.c
+  * contrib/hbhpdf/3rd/libhpdf/libhpdf.diff
+    ! include <windows.h> in WinCE builds, it's necessary for GetLastError()
+
+  * src/3rd/jpeg/Makefile
+    ! do not use getenv() in all WinCE builds
+
+  * src/common/hbver.c
+    * cast revision number to HB_ULONG to pacify warning
+
+  * src/vm/extrap.c
+    ! do not compile unused in WinCE builds hb_winExceptionHandler()
+
+  * include/hbapi.h
+    * added HB_EXPORT attribute to hb_macroTextValue() function
+
+  * include/hbvm.h
+  * src/vm/hvm.c
+    + added C function:
+         PHB_ITEM hb_vmCompileMacro( const char * szExpr, PHB_ITEM pDest );
+      It returns Harbour item or NULL at error (wrong macro text).
+      The result should be used with hb_vmEvalBlockOrMacro() and then freed
+      by hb_vmDestroyBlockOrMacro(). It hides low level macro representation
+      so we can change it in the future. Now it's still simple pointer item
+      without autodestructor.
+
+  * src/rdd/hsx/hsx.c
+  * src/rdd/workarea.c
+    * use hb_vmCompileMacro() instead of hb_macroCompile()
+
+  * src/vm/runner.c
+    * changed 6101 error message for "Unknown or unregistered symbol"
+      to "Unknown or unregistered function symbol".
+    * report above error when HRB module is loaded and its external function
+      is not registered or not marked as DYNAMIC by earlier registered modules
+      in HVM symbol table.
+      Warning. This modification may exploit problems in code loading HRB files
+      with cross references which has worked so far. In such case user should
+      pass to hb_hrbLoad()/hb_hrbRun() as first parameters flags containing
+      HB_HRB_BIND_LAZY or declare the problematic function in his main code
+      as dynamic, i.e.:
+         DYNAMIC <funcName>
+
+  * src/rdd/dbf1.c
+    * declare internal function hb_dbfTransCheckCounters() as static one
+
+  * src/harbour.def
+    ! added missing exported Harbour functions
+
+2024-02-13 05:49 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * debian/compat
+    * set 10 as compatibility level
+
+  * contrib/3rd/sqlite3/sqlite3.c
+  * contrib/3rd/sqlite3/sqlite3.diff
+    * do not use noinline function attribute in GCC prior 3.1
+
+  * contrib/xhb/xhberror.c
+  * src/rtl/gtdos/gtdos.c
+    ! fixed format specifiers in HB_TRACE() messages
+
+  * src/common/expropt1.c
+  * src/rtl/langapi.c
+    * pass explicitly "(null)" string instead of NULL string pointer
+      to HB_TRACE() messages, some C compilers can autoinline functions
+      and generate warning detecting such situation
+
+  * src/pp/hbpp.c
+    * cast revision number to ( HB_ULONG ) to avoid warnings in some
+      compilers which do not understand %I64u format specifier
+
+  * utils/hbmk2/hbmk2.prg
+    * preffer HB_WITH_* settings then platform native pkg-config,
+      giving pkg-config precedence breaks cross and custom builds
+
+2024-02-10 11:27 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+    ! fixed bad copy & past typo
+
+2024-02-09 20:56 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+  * contrib/hbcurl/hbcurl.ch
+    + added HB_CURLOPT_XFERINFODATA and HB_CURLOPT_XFERINFOFUNCTION
+    ! use CURLOPT_XFERINFO* instead of depreciated CURLOPT_PROGRESS*
+      to implement HB_CURLOPT_PROGRESSBLOCK
+    ! do not use depreciated CURLOPT_RANDOM_FILE and CURLOPT_EGDSOCKET,
+      they serve no purpose anymore
+    + added macros for new protocols
+    + added HB_CURLOPT_PROTOCOLS_STR and HB_CURLOPT_REDIR_PROTOCOLS_STR
+    ! use CURLOPT_PROTOCOLS_STR and CURLOPT_REDIR_PROTOCOLS_STR instead
+      of depreciated CURLOPT_PROTOCOLS and CURLOPT_REDIR_PROTOCOLS
+    * emulate CURLOPT_PROTOCOLS and CURLOPT_REDIR_PROTOCOLS using
+      CURLOPT_PROTOCOLS_STR and CURLOPT_REDIR_PROTOCOLS_STR in new curl
+      versions
+    + added support for HB_CURLOPT_MIMEPOST
+    ! use CURLOPT_MIMEPOST to emulate depreciated in new curl versions
+      CURLOPT_HTTPPOST
+    + added support for HB_CURLOPT_PROXY_SERVICE_NAME
+    ! use CURLOPT_PROXY_SERVICE_NAME to emulate depreciated in new curl
+      versions CURLOPT_SOCKS5_GSSAPI_SERVICE
+    + added HB_CURLINFO_ACTIVESOCKET
+    ! use CURLINFO_ACTIVESOCKET instead of depreciated CURLINFO_LASTSOCKET
+    + added HB_CURLINFO_SIZE_UPLOAD_T, HB_CURLINFO_SIZE_DOWNLOAD_T,
+      HB_CURLINFO_SPEED_DOWNLOAD_T, HB_CURLINFO_SPEED_UPLOAD_T,
+      HB_CURLINFO_CONTENT_LENGTH_DOWNLOAD_T and
+      HB_CURLINFO_CONTENT_LENGTH_UPLOAD_T
+    ! use CURLINFO_*_T actions instead of depreciated ones which operate
+      double as file offset and emulate old actions using new ones in
+      new curl versions
+
+  * contrib/hbssl/evp.c
+    ! Do no use EVP_cleanup() in OpenSSL 1.1.0 and newer.
+      It no longer has any effect.
+
+  * contrib/hbssl/hbssl.h
+    * set OPENSSL_API_COMPAT to 1.2.0 to pacify OpenSSL 3.0 API.
+      It hides OpenSSL 3.0 warnings but we should update the code to use
+      new suggested API.
+
+  * contrib/hbwin/olecore.c
+    ! invoke assign methods with DISPATCH_PROPERTYPUTREF instead of
+      DISPATCH_PROPERTYPUT if assigned value is OLE object. If such
+      functionality is not implemented by the object (some OLE
+      implementations do not support it and returns DISP_E_MEMBERNOTFOUND)
+      then call it again but in previous form with DISPATCH_PROPERTYPUT
+
+  * include/hbapirdd.h
+  * src/rdd/dbcmd.c
+    ! fixed error codes set by DbSetRelations() to be Cl*pper compatible
+
+  * src/rdd/dbcmd.c
+    + accept symbol items in Select() and DbSelectArea() just like in
+      ( <alias> ) -> <exp>
+
+  * include/hbcompdf.h
+  * include/hbexprb.c
+  * src/common/funcid.c
+    + added compile time optimization for Select() function without parameters
+    + added compile time optimization DbSelectArea( <nNum> | <sSym> )
+    + added support for hb_PIsByRef( @localVarName ) -> <lPassedByRef>
+      When the parameter is passed by reference Harbour verifies if it's
+      existing local variable and change it to its index in parameter list
+      so effectively it works like hb_IsByRef( @localVarName ) in xHarbour
+
+  * contrib/xhb/hbcompat.ch
+    + added translations for
+      hb_PIsByRef( @<localVar> ) <=> hb_IsByRef( @<localVar> )
+
+2024-01-29 17:13 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/harbour.def
+    + added hb_socketNToHS() to exported functions
+
+  * src/rtl/hbsocket.c
+    + added hb_socketNToHS() for compilation without socket support
+      (HB_SOCKET_OFF macro)
+
+2024-01-28 12:58 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbfimage/core.c
+    * use FreeImage_Rotate() instead of FreeImage_RotateClassic() in new
+      FreeImage versions which do not support this function
+
+  * contrib/hbsqlit3/core.c
+    * added missing casting reported as bug in C++ mode
+
+  * contrib/hbssl/hbssl.h
+  * contrib/hbssl/rsa.c
+    * added HB_SSL_CONST_BYTE() macro to pacify unconst warnings
+      in old SSL versions
+
+  * src/rdd/wacore.c
+    * inlined macro to pacify still returning false warning
+
+2023-12-08 23:17 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * contrib/sddsqlt3/core.c
+    ! Fixed a different signedness compare warning.
+
+2023-12-07 21:25 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * contrib/3rd/sqlite3/*
+    * Updated local sqlite3 from 3.8.2 to 3.44.2.
+    ! Updated diff to make Borland compile sqlite3.
+
+2023-12-07 21:24 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * contrib/hbsqlit3/hbsqlit3.ch
+    * Updated SQLite constants to version 3.44.2.
+    % Reordered hbsqlit3.ch to simplify diffing from sqlite.h.
+  * contrib/hbsqlit3/core.c
+    + SQLITE3_CREATE_FUNCTION(): Added support for function flags.
+
+2023-12-07 21:23 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * contrib/hbsqlit3/core.c
+  * contrib/hbsqlit3/hbsqlit3.ch
+    % Minor updates to hbsqlit3, borrowed from @vszakats's fork.
+  ; parts of original commits:
+  ; * https://github.com/vszakats/hb/commit/ca9f75850cf65ffc93b483d1a6b355fd1be2d203
+  ;   2015-05-13 21:07 UTC+0200 Viktor Szakats (vszakats users.noreply.github.com)
+  ; * https://github.com/vszakats/hb/commit/949e77ae6975795ec4c11ced0d223207c12e20f9
+  ;   2015-07-15 20:26 UTC+0200 Viktor Szakats (vszakats users.noreply.github.com)
+  ; * https://github.com/vszakats/hb/commit/dae1a8698520029b4053bbc7f8eeb01f619164c4
+  ;   2017-08-14 18:59 UTC Viktor Szakats (vszakats users.noreply.github.com)
+
+2023-12-07 21:21 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  ; merged:
+  2015-04-09 11:34 UTC+0200 Viktor Szakats (vszakats users.noreply.github.com)
+    * contrib/hbsqlit3/core.c
+    * contrib/hbsqlit3/hbsqlit3.hbx
+      + add sqlite3_status64()
+      % adjust variable scopes
+      ! fix to reset reference parameters in functions with
+        functionality disabled
+    ; origin: https://github.com/vszakats/hb/commit/5bcaa24c93bccdbdfe9ea52f3cbf4ebb8837dd5f
+
+  2015-09-02 19:11 UTC+0200 Viktor Szakats (vszakats users.noreply.github.com)
+    * contrib/hbsqlit3/core.c
+      % use hb_fileLoad()
+    ; Commit split from:
+    ; origin: https://github.com/vszakats/hb/commit/8f534aaa77ff07ad86db5ad079d376d515561c5a
+
+  2017-08-01 20:23 UTC Viktor Szakats (vszakats users.noreply.github.com)
+    * contrib/hbsqlit3/core.c
+    * contrib/sddsqlt3/core.c
+      * use new sqlite3_prepare_v3() when built against
+        sqlite 3.20.0 or upper.
+    * contrib/hbsqlit3/core.c
+      + SQLITE3_PREPARE() add 3rd parameter <nPrepFlags>
+        Usable if build against sqlite 3.20.0 or upper, ignored otherwise
+    * contrib/hbsqlit3/hbsqlit3.ch
+      + add SQLITE3_PREPARE_PERSISTENT constant
+    ; origin: https://github.com/vszakats/hb/commit/b33de96c81ac790f390e506160a4d1d8c2b5f4fe
+
+2023-12-07 21:00 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * config/win/bcc.mk
+  * utils/hbmk2/hbmk2.prg
+    ! Fixed Borland C 32-bit compiler warning flags.
+
+2023-12-07 20:00 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * .github/workflows/linux-ci.yml
+    ! Linux CI build fix (outdated packages).
+  * .github/workflows/vm1-ci.yml
+  + .github/workflows/vm2-ci.yml
+    + Added an OmniOS CI build.
+    ! Switched FreeBSD CI build to vmactions/freebsd@v1 action as it's
+      more stable.
+
+2023-12-01 11:00 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * src/rtl/fserr.c
+    * Mapped ERROR_INVALID_NAME on Windows to DOS error 2.
+      Makes hbtest pass on Windows.
+
+2023-11-30 22:36 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * src/3rd/Makefile
+  - src/3rd/tiff/
+  * package/harbour.spec
+  * README.md
+    - Removed third-party TIFF library. It's not clear why it was even
+      included, it's not C90 compatible anymore, and a major pain to maintain.
+
+2023-11-30 18:12 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * contrib/hbsqlit3/core.c
+  * contrib/hbsqlit3/hbsqlit3.ch
+  * contrib/hbsqlit3/hbsqlit3.hbx
+    * Implemented SQLITE3_DB_FILENAME() on SQLite 3.7.10+.
+    * Implemented SQLITE3_EXPANDED_SQL(), SQLITE3_TRACE_V2() on SQLite 3.14.0+.
+    ; Thanks to Mindaugas Kavaliauskas for thorough reviewing!
+  * contrib/hbsqlit3/tests/backup.prg
+  * contrib/hbsqlit3/tests/demo.prg
+    * Updated examples to use SQLITE3_TRACE_V2() on SQLite 3.14.0+.
+
+2023-11-22 09:06 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbssl/hbssl.hbm
+  * contrib/hbssl/hbssl.hbx
+  * contrib/hbssl/hbssl.h
+  + contrib/hbssl/rsa.c
+    + added PRG functions for RSA encryption/decryption:
+         RSA_size( <pKey> ) -> <nCipherBlockSize>
+         RSA_public_encrypt( <pKey>, <cData>, @<cDataEnc> ;
+                              [, <nPadding> = HB_RSA_PKCS1_PADDING ] ) ;
+                  -> <nSize> > 0 | <nError> <= 0
+         RSA_private_decrypt( <pKey>, <cDataEnc>, @<cDataDec> ;
+                              [, <nPadding> = HB_RSA_PKCS1_PADDING ] ) ;
+                  -> <nSize> > 0 | <nError> <= 0
+         RSA_private_encrypt( <pKey>, <cData>, @<cDataEnc> ;
+                              [, <nPadding> = HB_RSA_PKCS1_PADDING ] ) ;
+                  -> <nSize> > 0 | <nError> <= 0
+         RSA_public_decrypt( <pKey>, <cDataEnc>, @<cDataDec> ;
+                              [, <nPadding> = HB_RSA_PKCS1_PADDING ] ) ;
+                  -> <nSize> > 0 | <nError> <= 0
+    + added C functions for manipulating RSA keys inside HB_ITEMs:
+         HB_BOOL hb_RSA_is( int iParam );
+         RSA *   hb_RSA_par( int iParam );
+         void    hb_RSA_ret( RSA * rsa );
+
+  * contrib/hbssl/pem.c
+    + added support for RSA keys.
+      Now the following PRG functions return RSA key which can be passed to
+      RSA_* functions:
+         PEM_READ_BIO_RSAPRIVATEKEY()
+         PEM_READ_BIO_RSAPUBLICKEY()
+         PEM_READ_BIO_RSA_PUBKEY()
+
+  * contrib/hbssl/evppkey.c
+    + added functions for EVP_PKEY encryption/decryption:
+         EVP_PKEY_base_id( <pKey> ) -> <nType>
+         EVP_PKEY_CTX_new( <pKey> ) -> <pKeyCTX>
+         EVP_PKEY_encrypt_init( <pKeyCTX> ) -> <nResult> (1 - OK, <=0 - Error)
+         EVP_PKEY_encrypt( <pKeyCTX>, @<cDataEnc>, <cData> ) ;
+                  -> <nSize> > 0 | <nError> <= 0
+         EVP_PKEY_decrypt_init( <pKeyCTX> ) -> <nResult> (1 - OK, <=0 - Error)
+         EVP_PKEY_decrypt( <pKeyCTX>, @<cDataDec>, <cDataEnc> ) ;
+                  -> <nSize> > 0 | <nError> <= 0
+      Above functions can be used with keys loaded by:
+         PEM_READ_PRIVATEKEY()
+         PEM_READ_PUBKEY()
+      In OpenSSL 3.0 typed functions like *RSA*, *DSA*, *DH*, ... are
+      depreciated and common for different methods EVP ones should be
+      used instead.
+    + added support for RSA encryption/decryption in above functions in
+      OpenSSL libraries prior 1.0.0 which do not have EVP_PKEY_CTX. RSA
+      support is emulated by direct calls to RSA_* functions so now for
+      RSA it's possible to use new functions with old OpenSSL libraries.
+
+  * contrib/hbssl/hbssl.ch
+    + added constants for RSA padding: HB_RSA_*_PADDING
+    + added constants for EVP PKEY types: HB_EVP_PKEY_*
+
+  * contrib/hbssl/hbssl.hbx
+    + added new functions
+
+2023-11-15 15:57 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * contrib/hbsqlit3/tests/backup.prg
+    + Simple change in test to provoke access to dangling pointer saved
+      by SQLITE3_TRACE().
+  * contrib/hbsqlit3/core.c
+    ! Fixed dangling pointer access with SQLITE3_TRACE(), SQLITE3_PROFILE().
+
+2023-11-14 22:27 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * .github/workflows/linux-ci.yml
+    * On Linux CI workflow, run tests with Valgrind.
+    + Added contrib/hbsqlit3/tests/backup.prg as a test.
+
+2023-11-13 23:58 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbct/ctwin.c
+    ! typo in comment
+
+  * include/hbexprb.c
+  * include/hbexprop.h
+  * src/common/expropt2.c
+  * src/harbour.def
+    * moved code for reducing NOT expression to new separate function
+      hb_compExprReduceNot()
+    ; added comments to mark places for possible compiletime warnings when
+      incompatible types are used inside in logical expressions
+      (.AND. / .OR. / .NOT.)
+
+2023-11-12 16:40 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * .github/workflows/linux-ci.yml
+  * .github/workflows/macos-ci.yml
+  * .github/workflows/vm1-ci.yml
+  * .github/workflows/windows-ci.yml
+    * Enforce local SQLite3 usage in CI builds.
+
+2023-11-12 14:38 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * .github/workflows/linux-ci.yml
+  * .github/workflows/macos-ci.yml
+  * .github/workflows/vm1-ci.yml
+  * .github/workflows/windows-ci.yml
+    * Made strict CI build not that strict by adding
+      -Wno-error=deprecated-declarations.
+    ! Fixed ccache configuration under msys2.
+
+2023-11-11 21:41 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * contrib/hbwin/win_bmp.c
+    ! Fixed dangling pointer access (introduced in commit 64dba82) in
+      WIN_DRAWBITMAP().
+
+2023-11-11 21:08 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * .github/workflows/linux-ci.yml
+  * .github/workflows/macos-ci.yml
+  * .github/workflows/vm1-ci.yml
+  * .github/workflows/windows-ci.yml
+    * Use `-Wno-error=array-bounds` in GCC strict mode CI builds as the array
+      bounds checker is buggy in GCC 12-13.
+
+2023-11-11 20:05 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * contrib/gtwvg/gtwvg.h
+  * contrib/gtwvg/wvgcore.c
+  * contrib/gtwvg/wvgutils.c
+  * contrib/gtwvg/wvgwing.c
+  * contrib/hbwin/wapi_winuser_dlg.c
+    ! Minor 64-bit Win32 API fixes.
+
+2023-11-11 19:42 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * config/win/mingw.mk
+  * utils/hbmk2/hbmk2.prg
+    ! Use -D__USE_MINGW_ANSI_STDIO=0 to opt out of C99 printf emulation on
+      MinGW-W64 10.0+.
+
+2023-11-11 18:38 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * include/hbwinuni.h
+  * src/vm/maindllp/dllpcode.c
+    * In `HB_WINAPI_GETPROCADDRESS[T]`, cast the return value to `void *`
+      to pacify further cast warnings, as the exact function signature is almost
+      never a `FARPROC` anyway.
+  * src/compiler/harbour.yyc
+  * src/macro/macro.yyc
+    * Added `HB_SYMBOL_UNUSED( yynerrs )` to pacify compiler warnings.
+  * src/rtl/replic.c
+    * Added a cast to a comparison to pacify compiler warning.
+  * src/vm/classes.c
+    ! Fixed outdated format specifier in a trace message.
+
+2023-11-11 18:25 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * .github/workflows/vm1-ci.yml
+    ! Fixed ccache and sysctl path in BSD CI builds.
+
+2023-11-11 17:07 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * src/3rd/pcre
+    ! Updated pcre to 8.45.
+  * src/3rd/tiff
+    ! Updated tiff to 4.6.0. Removed C99-isms.
+  * src/3rd/jpeg
+    ! Updated jpeg to 9e.
+  * src/3rd/png
+    ! Updated libpng to 1.6.40
+  * src/3rd/zlib
+    ! Updated zlib to 1.3.
+
+2023-11-11 16:48 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * config/win/mingw.mk
+    + Added support for HB_CCACHE in MinGW builds.
+
+2023-11-11 16:37 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * config/win/bcc.mk
+    ! Fixed quoting when building under POSIX shell.
+
+2023-11-11 16:00 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * .github/workflows/linux-ci.yml
+  * .github/workflows/macos-ci.yml
+  + .github/workflows/vm1-ci.yml
+  * .github/workflows/windows-ci.yml
+    + Added bcc (32-bit) Windows CI build.
+    + Added FreeBSD, NetBSD, and OpenBSD CI builds.
+    * Cosmetic changes to keep different workflows easily diffable.
+
+2023-11-11 13:59 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.h
+    ! synced declaration of QTConsole::repaintChars() with its implementation
+
+2023-11-11 13:43 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.h
+    * use QT_VERSION >= 0x050000 instead of QT_VERSION <= 0x040900
+    * indenting
+
+2023-11-11 13:33 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/common/hbdate.c
+    * accept timestamp values with trailing "Z" indicating UTC time
+      (zero hour offset)
+
+2023-11-09 15:07 UTC+0100 Phil Krylov (phil a t krylov.eu)
+  * .github/workflows/linux-ci.yml
+  * .github/workflows/macos-ci.yml
+  * .github/workflows/windows-ci.yml
+    + Added GitHub Actions CI workflows.
+
+2023-10-29 14:27 UTC+0100 Enrico Maria Giordano (e.m.giordano@emagsoftware.it)
+  * contrib/hbssl/hbssl.hbp
+    ! added support for Openssl 3
+
+2023-07-07 00:07 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/vm/classes.c
+    ! fixed GPF when object item variable is passed by reference but the object
+      is neither instance of standard class nor scalar class
+
+2023-05-19 16:29 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbclass.ch
+    ! fixed declaration stripping when HB_CLS_NO_DECLARATIONS is defined
+
+  * src/compiler/hbmain.c
+    ! do not generate warnings for undeclared methods when -w[12] is used.
+      They should be emitted only for -w3 or higher (if any in the future).
+      Thanks to Toninho for the information about the problem.
+
+2023-05-12 18:13 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/compiler/hbmain.c
+    ! fixed GPFs in dummy and never finished code for strong typing and message
+      call validation.
+
+2023-04-21 13:01 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rtl/tbrowse.prg
+    ! disabled HB_CLS_NOTOBJECT in TBrowse class definition
+
+2023-04-21 11:45 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/harbour.hbx
+  * src/harbour.def
+  * src/rtl/vfile.c
+    + added new PRG function:
+         hb_vfIsLocal( <cFileName> ) --> <lLocalFileSystem>
+      It returns TRUE if <cFileName> is not redirected to any Harbour File IO
+      driver but access local file system API.
+
+  * contrib/xhb/traceprg.prg
+    * merged with Victor's branch so now Harbour File IO API is used to
+      access log file.
+    * convert relative log file name to absolute file path name
+    % write whole log entry in single IO operation.
+
+2023-04-20 23:35 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/xhb/hbcompat.ch
+    ! fixed translations of xHarbour operators inside brackets,
+      thanks to Ron.
+
+  * contrib/xhb/xhb.hbx
+  * contrib/xhb/xcstr.prg
+    + added support for timestamp translations
+    ! fixed few wrong translations
+    ! fixed serialization of hash items with cyclic references
+      in ValToPrg()
+    % optimized cyclic references detection in ValToPrg()
+    ! generate dummy code which cannot be compiled for codeblocks serialized
+      by ValToPrg()
+
+  * contrib/xhb/xhb.ch
+    + added SET TRACE ... command, thanks to Ron.
+
+  * contrib/xhb/xhberror.c
+    * do not show __ERRRT_BASE() and __ERRRT_SBASE() in error call stack.
+
+  * src/vm/classes.c
+    ! added protection against possible GPF when manually created serialized object
+      data with super class symbols longer then HB_SYMBOL_NAME_LEN is deserialized
+
+2023-04-20 15:12 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc1.cpp
+    % minor optimization in HB_GTI_PALETTE
+
+  * src/rtl/checkbox.prg
+  * src/rtl/listbox.prg
+  * src/rtl/pushbtn.prg
+  * src/rtl/radiobtn.prg
+  * src/rtl/radiogrp.prg
+  * src/rtl/scrollbr.prg
+  * src/rtl/tbcolumn.prg
+  * src/rtl/tbrowse.prg
+  * src/rtl/teditor.prg
+  * src/rtl/tget.prg
+  * src/rtl/tgetlist.prg
+  * src/rtl/tlabel.prg
+  * src/rtl/tmenuitm.prg
+  * src/rtl/tmenusys.prg
+  * src/rtl/tpopup.prg
+  * src/rtl/treport.prg
+  * src/rtl/tsymbol.prg
+  * src/rtl/ttextlin.prg
+  * src/rtl/ttopbar.prg
+    ! use :Init() method instead of :New() to initialize object instance
+      variables. In Class(y) :New() is class message not object one.
+
+2023-03-09 15:50 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbvm.h
+  * src/harbour.def
+    * added HB_EXPORT to functions dedicated to overload dynamic symbols
+
+  * src/rdd/hbsix/sxord.c
+    ! use hb_itemRelease() instead of unnecessary hb_itemReturnRelease()
+
+2023-02-03 02:46 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/vm/arrays.c
+    ! fixed buffer allocation in AClone()/hb_HClone() with possible cyclic
+      references.
+      I created the problem on 2023-01-30 15:18 UTC+0100 and it was reported
+      as internal error 9024: hb_xrealloc requested to resize to zero bytes
+
+
+2023-02-01 13:49 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/xhb/xhb.hbx
+    * added reference to SetErrorMode()
+
+2023-02-01 13:43 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/xhb/xhberrc.c
+    + implemented Harbour version of SetUnhandledExceptionFilter() and
+      SetErrorMode()
+
+  * src/rtl/diskspac.c
+    % use GetDiskFreeSpaceEx() directly on Win64 instead of accessing it
+      by GetProcAddress()
+
+  * ChangeLog.txt
+    ! typo in file name in previous commit
+
+2023-01-31 23:19 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  + contrib/xhb/xhberror.c
+    ! added file missing in previous commit:
+      added code which extends Harbour error objects adding functionality
+      known from xHarbour:
+         oError:ProcName
+         oError:ProcLine
+         oError:ProcModule
+      Above instance variables are initialized automatically when error
+      object is created.
+      To enable this functionality it's enough to add to PRG code:
+         REQUEST xhb_ErrorNew
+
+2023-01-31 14:59 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbapierr.h
+  * src/harbour.def
+  * src/rtl/errapi.c
+    + added new C function:
+         void hb_errReinit( PHB_ITEM pError );
+      it allows to replace default error object with user custom one which
+      support :Init() method
+
+  * contrib/xhb/xhb.hbp
+  + contrib/xhb/xhb.h
+  + contrib/xhb/xhberror.c
+    + added code which extends Harbour error objects adding functionality
+      known from xHarbour:
+         oError:ProcName
+         oError:ProcLine
+         oError:ProcModule
+      Above instance variables are initialized automatically when error
+      object is created.
+      To enable this functionality it's enough to add to PRG code:
+         REQUEST xhb_ErrorNew
+
+  * contrib/xhb/xhberr.prg
+    * use error object :Proc*() methods if they are available
+    - removed PRG version of xhb_ErrorNew()
+
+  * contrib/xhb/xhbmemo.prg
+  * contrib/xhb/xhbtedit.prg
+    ! use xhb_ErrorNew() instead of ErrorNew() which does not support
+      any parameters
+
+  * include/hbapicls.h
+    ; typo in comment
+
+2023-01-31 07:17 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/vm/fm.c
+  * src/vm/garbage.c
+    ! pacified warnings
+
+2023-01-30 15:18 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rtl/arc4.c
+    ! include hbarc4.h instead of arc4.h which does not contain
+      required for dynamic libraries export attributes in function
+      declaration
+
+  * src/vm/classes.c
+    ! cleaned module symbol range checking
+
+  * src/vm/arrays.c
+    % optimized AClone() and hb_HClone()
+
+  * src/vm/hvmall.c
+    % changed the order of included files to keep alive function macros
+      undefined in garbage.c and fm.c
+
+  * src/vm/hvm.c
+    ! fixed hb_vmGetRealFuncSym() to work with PRG functions written in C
+      and registered in HVM without their own symbol table
+
+  * src/vm/dynsym.c
+    ; comment updated
+
+2023-01-23 12:46 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/harbour.hbx
+    ! added missing hb_socketSetNoSigPipe()
+
+  * src/rdd/dbfcdx/dbfcdx1.c
+    * redirect all debug output to stderr
+    * reenabled light debug code for early detection of index corruption
+
+2023-01-23 12:28 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/gtqtc/gtqtc.h
+  * contrib/gtqtc/gtqtc1.cpp
+    * replaced depreciated in 5.15 methods for mouse wheel events processing
+      by modern ones
+    * replaced depreciated in 5.15 methods for accessing screen geometry by
+      modern ones
+
+  * contrib/gtqtc/gtqtc1.cpp
+    + added support for TAB key processing when other widgets are shown and
+      TAB is use to switch focus
+
+  * src/rtl/alert.prg
+  * src/rtl/hbgtcore.c
+    + added support for hb_Alert() parameters passed in hash array, i.e.
+         hb_Alert( { "TXT" => <cMessage>, ;
+                     "BTN" => <aButtons>, ;
+                   [ "TIM" => <nTimeOut> ] } ) => <nButton>
+
+  * contrib/gtqtc/gtqtc.h
+  * contrib/gtqtc/gtqtc1.cpp
+  * include/hbgtinfo.ch
+    + added new hb_gtInfo() action: HB_GTI_MSGBOX
+      It opens QMessageBox with given by user text and buttons, i.e.
+         hb_gtInfo( HB_GTI_MSGBOX, <cMessage>, <aButtons> ) => <nButton>
+      or:
+         hb_gtInfo( HB_GTI_MSGBOX, ;
+                    { "TXT" => <cMessage>, ;
+                      "BTN" => <aButtons>, ;
+                    [ "TIM" => <nTimeOut>, ] ;
+                    [ "TIT" => <cTitle>, ] ;
+                    [ "INF" => <cInfoText>, ] ;
+                    [ "DTL" => <cDetailedText> ] } ) => <nButton>
+    + added support for redirecting Alert() and hb_Alert() calls to QT GUI
+      QMessageBox(). This functionality can be enabled by:
+         hb_gtInfo( HB_GTI_MSGBOX, .t. )
+      and then
+         Alert( <cMessage>, <aButtons> )
+      is redirected to QT GUI QMessageBox().
+
+  * include/hbgtinfo.ch
+  * contrib/gtqtc/gtqtc.h
+  * contrib/gtqtc/gtqtc.hbc
+  * contrib/gtqtc/gtqtc.hbp
+  * contrib/gtqtc/gtqtc1.cpp
+    + added new hb_gtInfo() action: HB_QT_SOUND
+      It allows to play sound using the low level GUI library, i.e.
+         hb_gtInfo( HB_QT_SOUND, <cSoundFile> )
+      This modification needs additional QT5 library Qt5Multimedia so I decided
+      to enable it conditionally by HB_QT_SOUND=yes environment variable.
+
+2023-01-17 13:10 UTC-0300 Lailton Fernando Mariano (lailton/at/paysoft.com.br)
+  * include/hbsocket.h
+  * src/harbour.def
+  * src/rtl/hbsocket.c
+  * src/rtl/hbsockhb.c
+    + added functions: Harbour socket API
+      HB_SOCKETSETNOSIGPIPE( hSocket, lValue ) --> lSuccess
+
+2023-01-17 13:00 UTC-0300 Lailton Fernando Mariano (lailton/at/paysoft.com.br)
+  * contrib/hbcurl/hbcurl.hbm
+  * contrib/hbssl/hbssl.hbm
+    * updated system include path for new Linux distributions
+
+2023-01-17 12:54 UTC-0300 Lailton Fernando Mariano (lailton/at/paysoft.com.br)
+  * src/rdd/dbfcdx/dbfcdx1.c
+    ! disabled debug code HB_CDX_DBGCODE
+
+2023-01-16 14:35 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbwin/wapi_shellapi.c
+    ! replaced struct = { 0 } with memset( &struct, 0, sizeof( struct ) )
+      Such BCC syntax does not clear the whole structure body in most of
+      other C compilers.
+
+  * src/pp/hbpp.c
+    ! fixed compilation for compilers using "i64" to format long long numbers,
+      thanks to Toninho for the information.
+
+2023-01-15 11:17 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbwin/win_prn1.c
+    ! fixed parameter type in font enum callback
+
+  * include/harbour.hbx
+  * src/harbour.def
+  * src/rtl/hbgtcore.c
+    + added two new PRG functions:
+         hb_gtExists( <cGtName> ) -> <lExists>
+         hb_gtList() -> <aGtNames>
+
+  * src/rtl/hbgtcore.c
+    * changed the order of defualt GT initialization. Now GT specified by -gt*
+      hbmk2 option has higher priority then GT chosen by
+         request HB_GT_<name>_DEFAULT
+
+  * include/hbapi.h
+  * src/vm/set.c
+    + added two C functions for OS codepage translations:
+         char * hb_osStrEncode2( const char * pszName,
+                                 char * pszBuffer, HB_SIZE nSize );
+         HB_WCHAR * hb_osStrU16Encode2( const char * pszName,
+                                        HB_WCHAR * pszBufferW, HB_SIZE nSize );
+
+  * include/hbwinuni.h
+    + added HB_CHARDUP2() macro for UNICODE/ANSI OS codepage translation
+
+  * src/common/hbgete.c
+    ! fixed memory allocation in MS-Windows version of hb_getenv_buffer()
+
+  * src/pp/hbpp.c
+    ! added integer range to HB_VER_REVID definition to pacify warning
+
+  * src/rtl/cdpapi.c
+    * minor simplification
+
+2022-11-25 18:14 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbapi.h
+  * src/vm/cmdarg.c
+    ! changed returned type in hb_verSvnID() form int to HB_MAXINT
+
+  * src/nortl/nortl.c
+    ! fixed void* pointer incrementation
+    ! pacified warnings
+
+  * src/rdd/dbcmd.c
+    * accept NIL value in hb_FieldPut() according to Aleksander recommendation
+
+2022-11-11 21:15 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/core.c
+    ! use hb_vmPushString() instead of hb_vmPushStringPcode()
+      hb_vmPushStringPcode() is only for static buffer which cannot be freed.
+      Variables passed to PRG debug functions can be stored by PRG code in
+      other variables which lives longer then passed buffer and later cause
+      GPF when curls structure is freed.
+    ! indenting
+
+2022-11-11 20:47 UTC+0100 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbapi.h
+  * src/common/hbver.c
+  * src/main/harbour.c
+  * src/pp/hbpp.c
+  * src/rtl/version.c
+  * src/vm/cmdarg.c
+    ! fixed integer overflow in revision number calculated from
+      the last ChangeLog entry date
+
+2022-11-07 09:24 UTC+0100 Aleksander Czajczynski (hb fki.pl)
+  * contrib/hbcurl/core.c
+    ! CURLOPT_MAXLIFETIME_CONN is available in curl 7.80.0,
+      fix older builds by adding a version check
+
+  * ChangeLog.txt
+    * entry for previous merge was "old" (i wouldn't touch
+      it alone), but it also had paths with backslashes
+      in place of slashes
+
+2022-11-04 20:15 UTC+0100 Antonino Perricone
+  * contrib/hbcurl/hbcurl.ch
+  * contrib/hbcurl/core.c
+    + added HB_CURLOPT_MAXLIFETIME_CONN to setup max lifetime of connection
+      see https://curl.se/libcurl/c/CURLOPT_MAXLIFETIME_CONN.html for more
+      information.
+    + added HB_CURLOPT_DEBUGBLOCK to setup a block for debug information
+      It takes a callback in the form of {|type, msg| ... }
+      see https://curl.se/libcurl/c/CURLOPT_DEBUGFUNCTION.html for more
+      information.
+  * contrib/hbcurl/hbcurl.ch
+    + added HB_CURLINFOTYPE_* macros for debug block
+
+2022-10-23 11:30 UTC-0300 Lailton Fernando Mariano (lailton/at/harbour.page)
+  * config/global.mk
+    + add auto detect cpu arm64
+  * config/darwin/global.mk
+  * utils/hbmk2
+    ! fix build dylibs with VM builtin to Darwin ( Mac OS )
+
+2022-10-17 20:28 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * ChangeLog.txt
+    * fixed log entry order
+
+2022-10-17 20:13 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * contrib/hbcurl/hbcurl.hbm
+    * updated system include path for new Linux distributions
+
+2022-10-17 20:11 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/harbour.hbx
+  * src/harbour.def
+  * src/rdd/dbcmd.c
+    + added two new functions:
+         hb_FieldGet( <cFieldName> | <nFieldPos> )
+               -> <xFieldValue> | NIL
+         hb_FieldPut( <cFieldName> | <nFieldPos>, <xFieldValue> )
+               -> <xFieldValue> | NIL
+      They works like FieldGet() and FieldPut() but allows to use field
+      name instead of field index.
+
+2022-10-17 19:58 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * src/rdd/workarea.c
+    * pacified warning
+
+2022-10-17 19:57 UTC+0200 Przemyslaw Czerpak (druzus/at/poczta.onet.pl)
+  * include/hbvm.h
+  * include/harbour.hbx
+  * src/harbour.def
+  * src/vm/hvm.c
+    + added new C function:
+         extern HB_EXPORT HB_BOOL hb_vmSetKeyPool( HB_BOOL fEnable );
+      It allows to disable keyboard pooling by GT driver in main HVM loop.
+      It's important in programs which mix GT terminal with GUI library
+      which use common event loop. Many GUI objects are not reentrant
+      safe and activating event loop during big changes may cause crash.
+      Such things can happen in applications which try to mix HBQT
+      and GTQTC. To avoid such problems before PRG code is called it's
+      enough to disable keyboard pooling in main HVM loop, eg.
+         if( hb_vmRequestReenter() )
+         {
+            HB_BOOL fKeyPool = hb_vmSetKeyPool( HB_FALSE );
+            hb_vmPushEvalSym();
+            hb_vmPush( pBlockItm );
+            hb_vmSend( 0 );
+            hb_vmSetKeyPool( fKeyPool );
+            hb_vmRequestRestore();
+         }
+    + added new PRG function:
+         __vmKeyPool( [<fEnable>] ) -> <fPrevState>
+      It's PRG interface to above C function. If application uses GT driver
+      and GUI library using the same event loop and such GUI library does not
+      disable keyboard pooling in main HVM loop before PRG code is activated
+      then it's enough to call this function at the beginning of application,
+      eg.
+         PROCEDURE INIT Clip()
+            __vmKeyPool( .f. )
+         RETURN
+      With above peace of code you can mix HBQT or other QT wrapper with GTQTC.
+
 2021-04-28 20:02 UTC+0200 Aleksander Czajczynski (hb fki.pl)
   * include/hbgtinfo.ch
     ! fixed comment, Alt+Numpad HB_GTI_KBDALT workaround was disabled by
@@ -80,7 +3064,7 @@
 2021-04-01 15:55 UTC-0300 Marco Aurelio V (marcoprodata/at/gmail.com)
   * contrib/hbpgsql/tpostgre.prg
     ! corrected buggy in refresh method when execute commands to change
-      struct 
+      struct
       [REVERTED]
 
 2021-03-31 23:43 UTC+0200 Aleksander Czajczynski (hb fki.pl)
@@ -506,7 +3490,7 @@
     * use HB_MEM_STATISTICS instead of HB_MEM_USEDMAX to check if memory
       statistic module is enabled in //info message
 
-2019-03-27 18:27 UTC-0300 Lailton Fernando Mariano (lailton/at/harbour.com.br)
+2019-03-27 18:27 UTC-0300 Lailton Fernando Mariano (lailton/at/paysoft.com.br)
   * config/android/libs.mk
   * utils/hbmk2/hbmk2.prg
     ! fixed a link error for Android. added lib log
@@ -810,7 +3794,7 @@
   * include/hbsetup.h
     * changed to recognize ARM64 platform with modern GCC builds
 
-2018-06-04 01:30 UTC-0300 Lailton Fernando Mariano (lailton/at/harbour.com.br)
+2018-06-04 01:30 UTC-0300 Lailton Fernando Mariano (lailton/at/paysoft.com.br)
   * contrib/hbexpat/3rd/expat/xmltok.c
     ! fixed compiler error for BCC <= 5.8.2
 
